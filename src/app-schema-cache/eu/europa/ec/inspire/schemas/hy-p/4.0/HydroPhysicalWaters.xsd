@@ -727,7 +727,7 @@ Date and time at which this version of the spatial object was superseded or reti
               </simpleContent>
             </complexType>
           </element>
-          <element name="geometry" nillable="true" type="gml:GeometricPrimitivePropertyType">
+          <element name="geometry" type="gml:GeometryPropertyType">
             <annotation>
               <documentation>-- Definition --
 The geometry of the man-made object, as a point, curve or surface.</documentation>
