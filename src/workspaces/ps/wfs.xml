@@ -1,0 +1,98 @@
+<wfs>
+  <id>WFSInfoImpl-3e37a066:15a3750de58:-7fc7</id>
+  <workspace>
+    <id>WorkspaceInfoImpl-3e37a066:15a3750de58:-7fc9</id>
+  </workspace>
+  <enabled>true</enabled>
+  <name>WFS</name>
+  <title>KeM avalik OGC WFS kaardiandmete teenus</title>
+  <maintainer>http://kemit.ee</maintainer>
+  <abstrct>Keskkonnaagentuuri INSPIRE kaitsealuste kohtade teema (lisa I) allalaadimisteenus [est] / INSPIRE protected sites theme (annex I) download service from the Estonian Environmental Agency [eng]. http://keskkonnaagentuur.ee  CC-BY 4.0</abstrct>
+  <accessConstraints>NONE</accessConstraints>
+  <fees>NONE</fees>
+  <versions>
+    <org.geotools.util.Version>
+      <version>1.0.0</version>
+    </org.geotools.util.Version>
+    <org.geotools.util.Version>
+      <version>1.1.0</version>
+    </org.geotools.util.Version>
+    <org.geotools.util.Version>
+      <version>2.0.0</version>
+    </org.geotools.util.Version>
+  </versions>
+  <keywords>
+    <string>WFS</string>
+    <string>KESKKOND\@language=et\;</string>
+    <string>ENVIRONMENT</string>
+    <string>infoFeatureAccessService\@vocabulary=ISO\;</string>
+    <string>ProtectedSites\@vocabulary=GEMET - INSPIRE themes\;</string>
+  </keywords>
+  <metadataLink/>
+  <citeCompliant>false</citeCompliant>
+  <onlineResource>http://gsavalik.envir.ee/geoserver/ps/ows</onlineResource>
+  <schemaBaseURL>http://schemas.opengis.net</schemaBaseURL>
+  <verbose>false</verbose>
+  <metadata>
+    <entry key="inspire.language">eng</entry>
+    <entry key="inspire.metadataURLType">application/vnd.iso.19139+xml</entry>
+    <entry key="SHAPE-ZIP_DEFAULT_PRJ_IS_ESRI">false</entry>
+    <entry key="inspire.spatialDatasetIdentifier">eelis.ala,http://envir.ee/eelis,;eelis.rahvala,http://envir.ee/eelis,</entry>
+    <entry key="inspire.createExtendedCapabilities">true</entry>
+    <entry key="inspire.metadataURL">http://inspire.maaamet.ee/geoportal/rest/document?id=</entry>
+  </metadata>
+  <gml>
+    <entry>
+      <version>V_20</version>
+      <gml>
+        <srsNameStyle>URN2</srsNameStyle>
+        <overrideGMLAttributes>false</overrideGMLAttributes>
+      </gml>
+    </entry>
+    <entry>
+      <version>V_10</version>
+      <gml>
+        <srsNameStyle>XML</srsNameStyle>
+        <overrideGMLAttributes>true</overrideGMLAttributes>
+      </gml>
+    </entry>
+    <entry>
+      <version>V_11</version>
+      <gml>
+        <srsNameStyle>URN</srsNameStyle>
+        <overrideGMLAttributes>false</overrideGMLAttributes>
+      </gml>
+    </entry>
+  </gml>
+  <serviceLevel>BASIC</serviceLevel>
+  <maxFeatures>1000000</maxFeatures>
+  <featureBounding>true</featureBounding>
+  <canonicalSchemaLocation>false</canonicalSchemaLocation>
+  <encodeFeatureMember>false</encodeFeatureMember>
+  <hitsIgnoreMaxFeatures>false</hitsIgnoreMaxFeatures>
+  <srs>
+    <string>3301</string>
+    <string>4326</string>
+    <string>4936</string>
+    <string>4937</string>
+    <string>4258</string>
+    <string>3035</string>
+    <string>3034</string>
+    <string>3038</string>
+    <string>3039</string>
+    <string>3040</string>
+    <string>3041</string>
+    <string>3042</string>
+    <string>3043</string>
+    <string>3044</string>
+    <string>3045</string>
+    <string>3046</string>
+    <string>3047</string>
+    <string>3048</string>
+    <string>3049</string>
+    <string>3050</string>
+    <string>3051</string>
+    <string>5730</string>
+    <string>7409</string>
+  </srs>
+</wfs>

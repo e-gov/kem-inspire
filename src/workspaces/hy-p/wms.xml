@@ -1,0 +1,105 @@
+<wms>
+  <id>WMSInfoImpl-56be02a4:15ab749f32c:-7fff</id>
+  <workspace>
+    <id>WorkspaceInfoImpl-3e37a066:15a3750de58:-7f21</id>
+  </workspace>
+  <enabled>true</enabled>
+  <name>WMS</name>
+  <title>Inspire hüdrograafia teema vaatamisteenus [est] | Inspire Hydrography view service [eng]</title>
+  <maintainer>http://kemit.ee</maintainer>
+  <abstrct>Inspire hüdrograafia teema vaatamisteenus. Sisaldab EELISe andmed [est] | Inspire Hydrography view service. Contains data from the Estonian Nature Information System [eng]. http://keskkonnaagentuur.ee CC-BY 4.0</abstrct>
+  <accessConstraints>NONE</accessConstraints>
+  <fees>NONE</fees>
+  <versions>
+    <org.geotools.util.Version>
+      <version>1.1.1</version>
+    </org.geotools.util.Version>
+    <org.geotools.util.Version>
+      <version>1.3.0</version>
+    </org.geotools.util.Version>
+  </versions>
+  <keywords>
+    <string>WMS</string>
+    <string>KESKKOND\@language=et\;</string>
+    <string>ENVIRONMENT</string>
+    <string>infoMapAccessService\@vocabulary=ISO\;</string>
+    <string>Hydrography\@vocabulary=GEMET - INSPIRE themes\;</string>
+  </keywords>
+  <metadataLink/>
+  <citeCompliant>false</citeCompliant>
+  <onlineResource>http://gsavalik.envir.ee/geoserver/hy-p/ows</onlineResource>
+  <schemaBaseURL>http://schemas.opengis.net</schemaBaseURL>
+  <verbose>false</verbose>
+  <metadata>
+    <entry key="kmlSuperoverlayMode">auto</entry>
+    <entry key="kmlReflectorMode">refresh</entry>
+    <entry key="loopContinuously">false</entry>
+    <entry key="svgAntiAlias">true</entry>
+    <entry key="kmlPlacemark">false</entry>
+    <entry key="inspire.spatialDatasetIdentifier"></entry>
+    <entry key="kmlKmscore">40</entry>
+    <entry key="mapWrapping">true</entry>
+    <entry key="pngCompression">25</entry>
+    <entry key="jpegCompression">25</entry>
+    <entry key="inspire.metadataURL">http://inspire.maaamet.ee/geoportal/rest/document?id=</entry>
+    <entry key="inspire.language">eng</entry>
+    <entry key="inspire.metadataURLType">application/vnd.iso.19139+xml</entry>
+    <entry key="advancedProjectionHandling">true</entry>
+    <entry key="maxAllowedFrames">2147483647</entry>
+    <entry key="kmlAttr">true</entry>
+    <entry key="svgRenderer">Batik</entry>
+    <entry key="disposalMethod">none</entry>
+    <entry key="inspire.createExtendedCapabilities">true</entry>
+    <entry key="scalehintMapunitsPixel">false</entry>
+    <entry key="framesDelay">1000</entry>
+  </metadata>
+  <srs>
+    <string>3301</string>
+    <string>4326</string>
+    <string>4936</string>
+    <string>4937</string>
+    <string>4258</string>
+    <string>3035</string>
+    <string>3034</string>
+    <string>3038</string>
+    <string>3039</string>
+    <string>3040</string>
+    <string>3041</string>
+    <string>3042</string>
+    <string>3043</string>
+    <string>3044</string>
+    <string>3045</string>
+    <string>3046</string>
+    <string>3047</string>
+    <string>3048</string>
+    <string>3049</string>
+    <string>3050</string>
+    <string>3051</string>
+    <string>5730</string>
+    <string>7409</string>
+  </srs>
+  <bboxForEachCRS>true</bboxForEachCRS>
+  <watermark>
+    <enabled>false</enabled>
+    <position>BOT_RIGHT</position>
+    <transparency>0</transparency>
+  </watermark>
+  <interpolation>Nearest</interpolation>
+  <getFeatureInfoMimeTypeCheckingEnabled>true</getFeatureInfoMimeTypeCheckingEnabled>
+  <getFeatureInfoMimeTypes>
+    <string>text/html</string>
+    <string>application/vnd.ogc.gml/3.1.1</string>
+    <string>application/vnd.ogc.gml</string>
+    <string>text/xml; subtype=gml/3.1.1</string>
+  </getFeatureInfoMimeTypes>
+  <getMapMimeTypeCheckingEnabled>true</getMapMimeTypeCheckingEnabled>
+  <getMapMimeTypes>
+    <string>text/html; subtype=openlayers</string>
+    <string>image/png</string>
+    <string>image/jpeg</string>
+  </getMapMimeTypes>
+  <maxBuffer>25</maxBuffer>
+  <maxRequestMemory>65536</maxRequestMemory>
+  <maxRenderingTime>60</maxRenderingTime>
+  <maxRenderingErrors>1000</maxRenderingErrors>
+</wms>

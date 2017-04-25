@@ -1,0 +1,26 @@
+<layerGroup>
+  <id>LayerGroupInfoImpl-3e37a066:15a3750de58:-7f2a</id>
+  <name>PS.ProtectedSites.NationalDesignationTypeCode</name>
+  <mode>SINGLE</mode>
+  <title>Protected Sites - NationalDesignationTypeCode</title>
+  <workspace>
+    <id>WorkspaceInfoImpl-3e37a066:15a3750de58:-7fc9</id>
+  </workspace>
+  <publishables>
+    <published type="layer">
+      <id>LayerInfoImpl-3e37a066:15a3750de58:-7fc3</id>
+    </published>
+  </publishables>
+  <styles>
+    <style>
+      <id>StyleInfoImpl-3e37a066:15a3750de58:-7f2e</id>
+    </style>
+  </styles>
+  <bounds>
+    <minx>354417.8851</minx>
+    <maxx>739207.5609</maxx>
+    <miny>6380049.0585</miny>
+    <maxy>6634274.9484</maxy>
+    <crs class="projected">EPSG:3301</crs>
+  </bounds>
+</layerGroup>

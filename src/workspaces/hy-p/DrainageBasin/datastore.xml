@@ -1,0 +1,14 @@
+<dataStore>
+  <id>DataStoreInfoImpl-56be02a4:15ab749f32c:-7fe1</id>
+  <name>DrainageBasin</name>
+  <type>Application Schema DataAccess</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl-3e37a066:15a3750de58:-7f21</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="dbtype">app-schema</entry>
+    <entry key="url">file:data/hy-p/DrainageBasin/DrainageBasin.appschema</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>

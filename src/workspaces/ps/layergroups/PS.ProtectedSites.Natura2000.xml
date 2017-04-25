@@ -1,0 +1,38 @@
+<layerGroup>
+  <id>LayerGroupInfoImpl-3e37a066:15a3750de58:-7f90</id>
+  <name>PS.ProtectedSites.Natura2000</name>
+  <mode>SINGLE</mode>
+  <title>Protected Sites - Natura2000</title>
+  <workspace>
+    <id>WorkspaceInfoImpl-3e37a066:15a3750de58:-7fc9</id>
+  </workspace>
+  <publishables>
+    <published type="layer">
+      <id>LayerInfoImpl-3e37a066:15a3750de58:-7fc3</id>
+    </published>
+    <published type="layer">
+      <id>LayerInfoImpl-3e37a066:15a3750de58:-7fc3</id>
+    </published>
+    <published type="layer">
+      <id>LayerInfoImpl-3e37a066:15a3750de58:-7fc3</id>
+    </published>
+  </publishables>
+  <styles>
+    <style>
+      <id>StyleInfoImpl-3e37a066:15a3750de58:-7fac</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl-3e37a066:15a3750de58:-7fa9</id>
+    </style>
+    <style>
+      <id>StyleInfoImpl-3e37a066:15a3750de58:-7fa7</id>
+    </style>
+  </styles>
+  <bounds>
+    <minx>344417.9772646903</minx>
+    <maxx>755314.0703681456</maxx>
+    <miny>6372972.77466095</miny>
+    <maxy>6641819.343893356</maxy>
+    <crs class="projected">EPSG:3301</crs>
+  </bounds>
+</layerGroup>
