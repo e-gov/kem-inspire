@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<appschema:AppSchemaDataAccess xmlns:ns2="http://www.opengis.net/ogc" xmlns:appschema="http://www.geotools.org/app-schema">
+    <namespaces>
+        <Namespace>
+            <prefix>ef</prefix>
+            <uri>http://inspire.ec.europa.eu/schemas/ef/4.0</uri>
+        </Namespace>
+        <Namespace>
+            <prefix>gml</prefix>
+            <uri>http://www.opengis.net/gml/3.2</uri>
+        </Namespace>
+        <Namespace>
+            <prefix>base</prefix>
+            <uri>http://inspire.ec.europa.eu/schemas/base/3.3</uri>
+        </Namespace>
+        <Namespace>
+            <prefix>base2</prefix>
+            <uri>http://inspire.ec.europa.eu/schemas/base2/2.0</uri>
+        </Namespace>
+        <Namespace>
+            <prefix>gmd</prefix>
+            <uri>http://www.isotc211.org/2005/gmd</uri>
+        </Namespace>
+        <Namespace>
+            <prefix>xsi</prefix>
+            <uri>http://www.w3.org/2001/XMLSchema-instance</uri>
+        </Namespace>
+        <Namespace>
+            <prefix>xlink</prefix>
+            <uri>http://www.w3.org/1999/xlink</uri>
+        </Namespace>
+    </namespaces>
+    <includedTypes>
+        <Include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">includeTypes.xml</Include>
+    </includedTypes>
+    <sourceDataStores>
+        <DataStore>
+            <id>dataStore</id>
+            <parameters>
+                <Parameter>
+                    <name>dbtype</name>
+                    <value>spatialite</value>
+                </Parameter>
+                <Parameter>
+                    <name>database</name>
+                    <value>${inspire.ef}</value>
+                </Parameter>
+            </parameters>
+        </DataStore>
+    </sourceDataStores>
+    <targetTypes>
+        <FeatureType>
+            <schemaUri>http://inspire.ec.europa.eu/schemas/ef/4.0/EnvironmentalMonitoringFacilities.xsd</schemaUri>
+        </FeatureType>
+    </targetTypes>
+    <typeMappings>
+
+        <!-- EnvironmentalMonitoringFacility: EMF -->
+
+        <FeatureTypeMapping>
+            <sourceDataStore>dataStore</sourceDataStore>
+            <sourceType>inspire_emf</sourceType>
+            <targetElement>ef:EnvironmentalMonitoringFacility</targetElement>
+            <isDenormalised>false</isDenormalised>
+            <attributeMappings>
+                <AttributeMapping>
+                    <targetAttribute>FEATURE_LINK</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>id_localid</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:EnvironmentalMonitoringFacility</targetAttribute>
+                    <idExpression>
+                        <OCQL>strConcat('emf.', id_localid)</OCQL>
+                    </idExpression>
+                </AttributeMapping>
+                 <AttributeMapping>
+                    <targetAttribute>ef:inspireId/base:Identifier/base:localId</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>strConcat('emf.',id_localid)</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:inspireId/base:Identifier/base:namespace</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>id_namespace</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:inspireId/base:Identifier/base:versionId</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>id_versionid</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:geometry</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>shape</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:mediaMonitored</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>Expression.NIL</OCQL>
+                    </sourceExpression>
+                    <encodeIfEpty>true</encodeIfEpty>
+                    <ClientProperty>
+                        <name>xlink:href</name>
+                        <value>strConcat('http://inspire.ec.europa.eu/codelist/MediaValue/', '')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xlink:title</name>
+                        <value>''</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>'unpopulated'</value>
+                    </ClientProperty>
+                </AttributeMapping>
+
+                <!-- EMF voidable properties -->
+
+                <AttributeMapping>
+                    <targetAttribute>ef:belongsTo/ef:NetworkFacility/ef:belongsTo</targetAttribute>
+                    <description>A link pointing to the EnvironmentalMonitoringNetwork(s) this EnvironmentalMonitoringFacility pertains to. The association has additional properties as defined in the association class NetworkFacility.</description>
+                    <!--sourceExpression>
+                        <OCQL>datasetid</OCQL>
+                        <linkElement>ef:EnvironmentalMonitoringNetwork</linkElement>
+                        <linkField>FEATURE_LINK</linkField>
+                    </sourceExpression-->
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>'unpopulated'</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:representativePoint</targetAttribute>
+                    <description>Representative location for the EnvironmentalMonitoringFacility</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>representative_point</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(representative_point), 'unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:measurementRegime</targetAttribute>
+                    <description>Regime of the measurement. A codelist value</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>xlink:href</name>
+                        <value>strConcat('http://inspire.ec.europa.eu/codeList/MeasurementRegimeValue/', '')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xlink:title</name>
+                        <value>''</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>measurement_regime_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:mobile</targetAttribute>
+                    <description>Indicate whether the EnvironmentalMonitoringFacility is mobile (repositionable) during the acquisition of the observation.</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>Expression.NIL</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>mobile_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:resultAcquisitionSource</targetAttribute>
+                    <description>Source of result acquisition. A codelist value</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>xlink:href</name>
+                        <value>strConcat('http://inspire.ec.europa.eu/codeList/ResultAcquisitionSourceValue/', '')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xlink:title</name>
+                        <value>Expression.NIL</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>result_acquisition_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:specialisedEMFType</targetAttribute>
+                    <description>Categorisation of EnvironmentalMonitoringFacilities generally used by domain and in national settings. EXAMPLE: platform, site, station, sensor, ...</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>specialized_emf_type_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>ef:operationalActivityPeriod/ef:OperationalActivityPeriod</targetAttribute>
+                    <idExpression>
+                        <OCQL>strConcat('algusots@emf.', id_localid)</OCQL>
+                    </idExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:operationalActivityPeriod/ef:OperationalActivityPeriod/ef:activityTime/gml:TimePeriod</targetAttribute>
+                    <idExpression>
+                        <OCQL>strConcat('algusots.TimePeriod@emf.', id_localid)</OCQL>
+                    </idExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:operationalActivityPeriod/ef:OperationalActivityPeriod/ef:activityTime/gml:TimePeriod/gml:begin</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>op_activity_start_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:operationalActivityPeriod/ef:OperationalActivityPeriod/ef:activityTime/gml:TimePeriod/gml:begin/gml:TimeInstant/gml:timePosition</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>op_activity_start</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:operationalActivityPeriod/ef:OperationalActivityPeriod/ef:activityTime/gml:TimePeriod/gml:begin/gml:TimeInstant</targetAttribute>
+                    <idExpression>
+                        <OCQL>strConcat('algusots.TimePeriod.begin@emf.', id_localid)</OCQL>
+                    </idExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>ef:operationalActivityPeriod/ef:OperationalActivityPeriod/ef:activityTime/gml:TimePeriod/gml:end</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>op_activity_end_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:operationalActivityPeriod/ef:OperationalActivityPeriod/ef:activityTime/gml:TimePeriod/gml:end/gml:TimeInstant</targetAttribute>
+                    <idExpression>
+                        <OCQL>strConcat('algusots.TimePeriod.end@emf.', id_localid)</OCQL>
+                    </idExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:operationalActivityPeriod/ef:OperationalActivityPeriod/ef:activityTime/gml:TimePeriod/gml:end/gml:TimeInstant/gml:timePosition</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>op_activity_end</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>ef:relatedTo</targetAttribute>
+                    <description>Any Thematic Link to an Environmental Monitoring Facility. The association has additional
+                    properties as defined in the association class AnyDomainLink.</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>'unpopulated'</value>
+                    </ClientProperty>
+                </AttributeMapping>
+
+                <!--  EMF voidable properties, inherited from AbstractMonitoringObject -->
+
+                <AttributeMapping>
+                    <targetAttribute>ef:supersedes</targetAttribute>
+                    <description>In a genealogy, the AbstractMonitoringObject(s) that has(have)
+                    been deactivated/replaced by another one.</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>supersedes_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:supersededBy</targetAttribute>
+                    <description>In a genealogy, the newly active AbstractMonitoringObject(s)
+                    that replaces(replace) the superseded one.</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>superseded_by_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:reportedTo</targetAttribute>
+                    <description>Information on the involvement of the AbstractMonitoringFeature
+                    in reporting.</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>reported_to_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:purpose</targetAttribute>
+                    <description>Level of legal organisation the
+                    EnvironmentalMonitoringNetwork is affiliated with</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>xlink:href</name>
+                        <value>strConcat('http://inspire.ec.europa.eu/codeList/PurposeOfCollectionValue/', '')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xlink:title</name>
+                        <value>''</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>purpose_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:onlineResource</targetAttribute>
+                    <description>A link to an external document providing further
+                    information on the AbstractMonitoringObject.</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>online_resource</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(online_resource), 'unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:additionalDescription</targetAttribute>
+                    <description>Plain text description of additional information not fitting in other attributes.</description>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>additional_description</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(additional_description), 'unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:name</targetAttribute>
+                    <description>Plain text denotation of the AbstractMonitoringObject.</description>
+                    <sourceExpression>
+                        <OCQL>name</OCQL>
+                    </sourceExpression>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(name), 'unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>ef:observingCapability</targetAttribute>
+                    <description>A link pointing to the explicit capability of an AbstractMonitoringObject.
+                    This provides a clean link between the observed property, the procedure used as well
+                    as the location of the measurement</description>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>observing_capability_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ef:hasObservation</targetAttribute>
+                    <description>Observation of emissions, of the state of environmental media and
+                    of other ecosystem parameters (biodiversity, ecological conditions of vegetation, etc.)
+                    by or on behalf of public authorities at this AbstractMonitoringFeature.</description>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>has_observation_void</value>
+                    </ClientProperty>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>ef:responsibleParty</targetAttribute>
+                    <description>Responsible party for the AbstractMonitoringObject.</description>
+                    <sourceExpression>
+                        <OCQL>id_localid</OCQL>
+                        <linkElement>base2:RelatedParty</linkElement>
+                        <linkField>FEATURE_LINK[1]</linkField>
+                    </sourceExpression>
+                    <isMultiple>true</isMultiple>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>ef:legalBackground</targetAttribute>
+                    <description>The legal context, in which the management and regulation
+                    of the AbstractMonitoringObject is defined.</description>
+                    <sourceExpression>
+                        <OCQL>id_localid</OCQL>
+                        <linkElement>base2:LegislationCitation</linkElement>
+                        <linkField>FEATURE_LINK[2]</linkField>
+                    </sourceExpression>
+                    <isMultiple>true</isMultiple>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>Expression.NIL</value>
+                    </ClientProperty>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>ef:broader</targetAttribute>
+                    <description>A link pointing to a broader AbstractMonitoringObject
+                    (a higher level in a hierarchical structure). The association has
+                    additional properties as defined in the association class Hierarchy.</description>
+                    <sourceExpression>
+                        <OCQL>id_localid</OCQL>
+                        <linkElement>emf_broader</linkElement>
+                        <linkField>FEATURE_LINK[3]</linkField>
+                    </sourceExpression>
+                    <isMultiple>true</isMultiple>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                </AttributeMapping>
+
+                <AttributeMapping>
+                    <targetAttribute>ef:narrower</targetAttribute>
+                    <description>A link pointing to narrower AbstractMonitoringObject(s)
+                    (a lower level in a hierarchical structure). The association has additional
+                    properties as defined in the association class Hierarchy.</description>
+                   <sourceExpression>
+                        <OCQL>id_localid</OCQL>
+                        <linkElement>emf_narrower</linkElement>
+                        <linkField>FEATURE_LINK[4]</linkField>
+                    </sourceExpression>
+                    <isMultiple>true</isMultiple>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                </AttributeMapping>
+            </attributeMappings>
+        </FeatureTypeMapping>
+
+    </typeMappings>
+</appschema:AppSchemaDataAccess>

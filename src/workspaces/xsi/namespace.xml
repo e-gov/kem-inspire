@@ -1,0 +1,5 @@
+<namespace>
+  <id>xsi_namespace</id>
+  <prefix>xsi</prefix>
+  <uri>http://www.w3.org/2001/XMLSchema-instance</uri>
+</namespace>

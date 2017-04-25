@@ -1,0 +1,58 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--27cc687f:157dc355e2d:-7fc3</id>
+  <name>EnvironmentalMonitoringFacility</name>
+  <nativeName>EnvironmentalMonitoringFacility</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--27cc687f:157dc355e2d:-7fc9</id>
+  </namespace>
+  <title>EnvironmentalMonitoringFacility</title>
+  <abstract>EST: EELISe seirejaamade andmed INSPIRE ef:EnvironmentalMonitoringfacility nähtustüübina. | ENG: EELIS&apos; (Estonian Nature Information System) environmental monitoring stations&apos; data published as INSPIRE ef:EnvironmentalMonitoringFacility feature type</abstract>
+  <keywords>
+    <string>EELIS</string>
+    <string>Estonian Nature Information System</string>
+    <string>SEIREJAAM\@language=et\;</string>
+  </keywords>
+  <nativeCRS>GEOGCS[&quot;ETRS89&quot;, 
+  DATUM[&quot;European Terrestrial Reference System 1989&quot;, 
+    SPHEROID[&quot;GRS 1980&quot;, 6378137.0, 298.257222101, AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]], 
+    TOWGS84[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6258&quot;]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;4258&quot;]]</nativeCRS>
+  <srs>EPSG:4258</srs>
+  <nativeBoundingBox>
+    <minx>19.2023</minx>
+    <maxx>28.206678</maxx>
+    <miny>57.333331</miny>
+    <maxy>59.916669</maxy>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>19.2023</minx>
+    <maxx>28.206678</maxx>
+    <miny>57.333330999143435</miny>
+    <maxy>59.91666899918246</maxy>
+    <crs>GEOGCS[&quot;WGS84(DD)&quot;, 
+  DATUM[&quot;WGS84&quot;, 
+    SPHEROID[&quot;WGS84&quot;, 6378137.0, 298.257223563]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH]]</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--27cc687f:157dc355e2d:-7fc6</id>
+  </store>
+  <maxFeatures>1000</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

@@ -1,0 +1,50 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--58b0c58c:1577509a42d:-7ffa</id>
+  <name>LandCoverDataset</name>
+  <nativeName>LandCoverDataset</nativeName>
+  <namespace>
+    <id>lcv_namespace</id>
+  </namespace>
+  <title>LandCoverDataset</title>
+  <abstract>EST: CORINE Land Cover andmed INSPIRE lcv:LandCoverDataset nähtustüüpidena. | ENG: CORINE Land Cover published as INSPIRE lcv:LandCoverDataset feature types</abstract>
+  <keywords>
+    <string>CORINE</string>
+    <string>LANDCOVER</string>
+  </keywords>
+  <srs>EPSG:4258</srs>
+  <nativeBoundingBox>
+    <minx>21.441857</minx>
+    <maxx>28.300186</maxx>
+    <miny>57.501312</miny>
+    <maxy>59.946221</maxy>
+    <crs>EPSG:4258</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>21.441857</minx>
+    <maxx>28.300186</maxx>
+    <miny>57.50131199914576</miny>
+    <maxy>59.94622099918295</maxy>
+    <crs>GEOGCS[&quot;WGS84(DD)&quot;, 
+  DATUM[&quot;WGS84&quot;, 
+    SPHEROID[&quot;WGS84&quot;, 6378137.0, 298.257223563]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH]]</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>false</enabled>
+  <advertised>false</advertised>
+  <metadata>
+    <entry key="cacheAgeMax">3600</entry>
+    <entry key="cachingEnabled">true</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--58b0c58c:1577509a42d:-7ffb</id>
+  </store>
+  <maxFeatures>1000</maxFeatures>
+  <numDecimals>7</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

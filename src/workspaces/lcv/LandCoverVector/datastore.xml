@@ -1,0 +1,15 @@
+<dataStore>
+  <id>DataStoreInfoImpl--58b0c58c:1577509a42d:-7ffb</id>
+  <name>LandCoverVector</name>
+  <type>Application Schema DataAccess</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl--58b0c58c:1577509a42d:-8000</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="dbtype">app-schema</entry>
+    <entry key="namespace">http://inspire.ec.europa.eu/schemas/lcv/4.0</entry>
+    <entry key="url">file:data/lcv/LandCoverVector/LandCoverVector.appschema</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>

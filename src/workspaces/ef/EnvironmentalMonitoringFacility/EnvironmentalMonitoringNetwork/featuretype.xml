@@ -1,0 +1,50 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--27cc687f:157dc355e2d:-7fc5</id>
+  <name>EnvironmentalMonitoringNetwork</name>
+  <nativeName>EnvironmentalMonitoringNetwork</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--27cc687f:157dc355e2d:-7fc9</id>
+  </namespace>
+  <title>EnvironmentalMonitoringNetwork</title>
+  <nativeCRS>GEOGCS[&quot;ETRS89&quot;, 
+  DATUM[&quot;European Terrestrial Reference System 1989&quot;, 
+    SPHEROID[&quot;GRS 1980&quot;, 6378137.0, 298.257222101, AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]], 
+    TOWGS84[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6258&quot;]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;4258&quot;]]</nativeCRS>
+  <srs>EPSG:4258</srs>
+  <nativeBoundingBox>
+    <minx>21.441857</minx>
+    <maxx>28.300186</maxx>
+    <miny>57.501312</miny>
+    <maxy>59.946221</maxy>
+    <crs>EPSG:4258</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>21.441857</minx>
+    <maxx>28.300186</maxx>
+    <miny>57.50131199914576</miny>
+    <maxy>59.94622099918295</maxy>
+    <crs>GEOGCS[&quot;WGS84(DD)&quot;, 
+  DATUM[&quot;WGS84&quot;, 
+    SPHEROID[&quot;WGS84&quot;, 6378137.0, 298.257223563]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0], 
+  UNIT[&quot;degree&quot;, 0.017453292519943295], 
+  AXIS[&quot;Geodetic longitude&quot;, EAST], 
+  AXIS[&quot;Geodetic latitude&quot;, NORTH]]</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--27cc687f:157dc355e2d:-7fc6</id>
+  </store>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

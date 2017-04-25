@@ -1,0 +1,20 @@
+<layer>
+  <name>EnvironmentalMonitoringFacility</name>
+  <id>LayerInfoImpl--27cc687f:157dc355e2d:-7fc2</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--d1527d9:158197ca8f9:-7ff7</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl--d1527d9:158197ca8f9:-7ff2</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--27cc687f:157dc355e2d:-7fc3</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

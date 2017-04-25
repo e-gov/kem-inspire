@@ -1,0 +1,102 @@
+<wfs>
+  <id>WFSInfoImpl-2d6511fb:157ad5a8a36:-7ff8</id>
+  <workspace>
+    <id>WorkspaceInfoImpl--58b0c58c:1577509a42d:-8000</id>
+  </workspace>
+  <enabled>true</enabled>
+  <name>WFS</name>
+  <title>Inspire maakatte teema allalaadimisteenus | Inspire LandCover download service</title>
+  <maintainer>http://kemit.ee</maintainer>
+  <abstrct>EST: Inspire maakatte teema WFS teenus - Inspire mõistes allalaadimisteenus. Sisaldab Corine andmed | ENG: Inspire LandCover WFS service, i.e download service in Inspire terms. Corine Land Cover datasets</abstrct>
+  <accessConstraints>NONE</accessConstraints>
+  <fees>NONE</fees>
+  <versions>
+    <org.geotools.util.Version>
+      <version>1.0.0</version>
+    </org.geotools.util.Version>
+    <org.geotools.util.Version>
+      <version>1.1.0</version>
+    </org.geotools.util.Version>
+    <org.geotools.util.Version>
+      <version>2.0.0</version>
+    </org.geotools.util.Version>
+  </versions>
+  <keywords>
+    <string>WFS</string>
+    <string>KESKKOND\@language=et\;</string>
+    <string>ENVIRONMENT</string>
+    <string>CORINE</string>
+    <string>MAAKATE\@language=et\;</string>
+    <string>LANDCOVER</string>
+    <string>INSPIRE</string>
+    <string>ALLALAADIMISTEENUS\@language=et\;</string>
+    <string>VIEW SERVICE</string>
+  </keywords>
+  <metadataLink/>
+  <citeCompliant>false</citeCompliant>
+  <onlineResource>http://gsavalik.envir.ee/geoserver</onlineResource>
+  <schemaBaseURL>http://schemas.opengis.net</schemaBaseURL>
+  <verbose>false</verbose>
+  <metadata>
+    <entry key="inspire.language">eng</entry>
+    <entry key="inspire.metadataURLType">application/vnd.iso.19139+xml</entry>
+    <entry key="SHAPE-ZIP_DEFAULT_PRJ_IS_ESRI">false</entry>
+    <entry key="inspire.spatialDatasetIdentifier">CLC.EE.2012,,</entry>
+    <entry key="inspire.createExtendedCapabilities">true</entry>
+    <entry key="inspire.metadataURL">http://inspire.maaamet.ee/geoportal/rest/document?id=%7B535BC71E-3E57-4086-AE86-1AC1ECECF060%7D</entry>
+  </metadata>
+  <gml>
+    <entry>
+      <version>V_10</version>
+      <gml>
+        <srsNameStyle>XML</srsNameStyle>
+        <overrideGMLAttributes>true</overrideGMLAttributes>
+      </gml>
+    </entry>
+    <entry>
+      <version>V_11</version>
+      <gml>
+        <srsNameStyle>URN</srsNameStyle>
+        <overrideGMLAttributes>false</overrideGMLAttributes>
+      </gml>
+    </entry>
+    <entry>
+      <version>V_20</version>
+      <gml>
+        <srsNameStyle>URN2</srsNameStyle>
+        <overrideGMLAttributes>false</overrideGMLAttributes>
+      </gml>
+    </entry>
+  </gml>
+  <serviceLevel>BASIC</serviceLevel>
+  <maxFeatures>1000000</maxFeatures>
+  <featureBounding>false</featureBounding>
+  <canonicalSchemaLocation>true</canonicalSchemaLocation>
+  <encodeFeatureMember>false</encodeFeatureMember>
+  <hitsIgnoreMaxFeatures>false</hitsIgnoreMaxFeatures>
+  <srs>
+    <string>3301</string>
+    <string>4326</string>
+    <string>4936</string>
+    <string>4937</string>
+    <string>4258</string>
+    <string>3035</string>
+    <string>3034</string>
+    <string>3038</string>
+    <string>3039</string>
+    <string>3040</string>
+    <string>3041</string>
+    <string>3042</string>
+    <string>3043</string>
+    <string>3044</string>
+    <string>3045</string>
+    <string>3046</string>
+    <string>3047</string>
+    <string>3048</string>
+    <string>3049</string>
+    <string>3050</string>
+    <string>3051</string>
+    <string>5730</string>
+    <string>7409</string>
+  </srs>
+</wfs>

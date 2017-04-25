@@ -1,0 +1,22 @@
+<layer>
+  <name>LandCoverUnit</name>
+  <id>LayerInfoImpl--58b0c58c:1577509a42d:-7ff7</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--27cc687f:157dc355e2d:-7ffe</id>
+  </defaultStyle>
+  <styles class="linked-hash-set">
+    <style>
+      <id>StyleInfoImpl--27cc687f:157dc355e2d:-7ff0</id>
+    </style>
+  </styles>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--58b0c58c:1577509a42d:-7ff8</id>
+  </resource>
+  <attribution>
+    <title>Keskkonnaagentuur | Estonian Environmental Agency : CC-BY 4.0</title>
+    <href>http://keskkonnaagentuur.ee</href>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

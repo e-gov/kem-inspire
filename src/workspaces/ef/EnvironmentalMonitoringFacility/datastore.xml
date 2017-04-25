@@ -1,0 +1,14 @@
+<dataStore>
+  <id>DataStoreInfoImpl--27cc687f:157dc355e2d:-7fc6</id>
+  <name>EnvironmentalMonitoringFacility</name>
+  <type>Application Schema DataAccess</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl--27cc687f:157dc355e2d:-7fca</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="dbtype">app-schema</entry>
+    <entry key="url">file:data/ef/EnvironmentalMonitoringFacility/EnvironmentalMonitoringFacility.appschema</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>
