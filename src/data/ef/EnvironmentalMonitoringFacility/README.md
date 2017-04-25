@@ -6,4 +6,4 @@ NB! as per DataStore see [GS docs on property interpolation](http://docs.geoserv
 
 inspire.ef=/what/ever/path/to/spatialite.db
 
-in {{WEB-INF/classes/app-schema.properties}}
+in `WEB-INF/classes/app-schema.properties`
