@@ -61,12 +61,18 @@
     </targetTypes>
     <typeMappings>
         <FeatureTypeMapping>
+            <!-- 2017.07.22 @tkardi: From here onwards it's simply a
+                placeholder, needs investigation... and internet connection ;)
+            -->
             <sourceDataStore>dataStore</sourceDataStore>
             <sourceType>cdda_type2</sourceType>
-            <targetElement></targetElement>
+            <targetElement>Type2_LinkedCdda</targetElement>
             <attributeMappings>
                 <AttributeMapping>
-                    <!--  -->
+                    <targetAttribute>linkedDataset/datasetID</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>'bla-bla-bla'</OCQL>
+                    </sourceExpression>
                 </AttributeMapping>
 
             </attributeMappings>
