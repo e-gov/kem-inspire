@@ -2,26 +2,6 @@
 <appschema:AppSchemaDataAccess xmlns:ns2="http://www.opengis.net/ogc" xmlns:appschema="http://www.geotools.org/app-schema">
     <namespaces>
         <Namespace>
-            <prefix>ps</prefix>
-            <uri>http://inspire.ec.europa.eu/schemas/ps/4.0</uri>
-        </Namespace>
-        <Namespace>
-            <prefix>gml</prefix>
-            <uri>http://www.opengis.net/gml/3.2</uri>
-        </Namespace>
-        <Namespace>
-            <prefix>base</prefix>
-            <uri>http://inspire.ec.europa.eu/schemas/base/3.3</uri>
-        </Namespace>
-        <Namespace>
-            <prefix>base2</prefix>
-            <uri>http://inspire.ec.europa.eu/schemas/base2/2.0</uri>
-        </Namespace>
-        <Namespace>
-            <prefix>gmd</prefix>
-            <uri>http://www.isotc211.org/2005/gmd</uri>
-        </Namespace>
-        <Namespace>
             <prefix>xsi</prefix>
             <uri>http://www.w3.org/2001/XMLSchema-instance</uri>
         </Namespace>
@@ -30,12 +10,8 @@
             <uri>http://www.w3.org/1999/xlink</uri>
         </Namespace>
         <Namespace>
-            <prefix>gco</prefix>
-            <uri>http://www.isotc211.org/2005/gco</uri>
-        </Namespace>
-        <Namespace>
-            <prefix>gn</prefix>
-            <uri>http://inspire.ec.europa.eu/schemas/gn/4.0</uri>
+            <prefix>cdda</prefix>
+            <uri>https://eionet.europa.eu/reporting/cdda/draft</uri>
         </Namespace>
     </namespaces>
     <includedTypes/>
@@ -56,7 +32,7 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>http://eionet.europa.eu/schemas/reporting/draft/CDDA_2018_Type2.xsd</schemaUri>
+            <schemaUri>https://eionet.europa.eu/reporting/cdda/draft/CDDA_2018_Type2.xsd</schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
@@ -65,16 +41,39 @@
                 placeholder, needs investigation... and internet connection ;)
             -->
             <sourceDataStore>dataStore</sourceDataStore>
-            <sourceType>cdda_type2</sourceType>
-            <targetElement>Type2_LinkedCdda</targetElement>
+            <sourceType>cdda_reporting_dataset</sourceType>
+            <targetElement>cdda:Type2_LinkedCdda</targetElement>
             <attributeMappings>
                 <AttributeMapping>
                     <targetAttribute>linkedDataset/datasetID</targetAttribute>
                     <sourceExpression>
-                        <OCQL>'bla-bla-bla'</OCQL>
+                        <OCQL>datasetid</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
-
+                <AttributeMapping>
+                    <targetAttribute>linkedDataset/GmlFilename</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>filename</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>linkedDataset/WfsEndpoint</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>wfsendpoint</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>linkedDataset/WfsVersion</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>wfsversion</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>linkedDataset/WfsStoredQuery</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>wfsstoredquery</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
             </attributeMappings>
         </FeatureTypeMapping>
     </typeMappings>
