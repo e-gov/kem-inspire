@@ -4,8 +4,14 @@
 https://forum.eionet.europa.eu/nrc-biodiversity-data-and-information/library/cdda-2018-reporting/cdda-2018-reporting-consultation/cdda-2018-schema/cdda-2018-type-2-designatedareas-and-linkeddataset-schema/download/en/1/CDDA_2018_Type2.xsd
 This is a draft only so changes are possible. The file's location in app-schema-
 cache is currently chosen arbitrarily, could change.
+2017.08.30 @tkardi: a couple of changes to get this working with GS app-schemas:
+    * add targetNamespace="http://whatever" attribute to root xs:schema
+    * expand empty xs:element tags to include full closing tag
+      <xs:element ...></xs:element>. Though I don't understand why is this an
+      issue?
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified"
+    targetNamespace="https://eionet.europa.eu/reporting/cdda/draft">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
 
   <xs:element name="Type2_LinkedCdda">
@@ -173,9 +179,21 @@ cache is currently chosen arbitrarily, could change.
 								Reporting.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-				 	<xs:element name="PSlocalId" type="xs:string" minOccurs="0" maxOccurs="1"/>
-				 	<xs:element name="PSnamespace" type="xs:string" minOccurs="0" maxOccurs="1"/>
-				 	<xs:element name="PSversionId" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				 	<xs:element name="PSlocalId" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				 	<xs:element name="PSnamespace" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				 	<xs:element name="PSversionId" type="xs:string" minOccurs="0" maxOccurs="1">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="remark" type="xs:string" minOccurs="0" maxOccurs="1">
 						<xs:annotation>
 							<xs:documentation>-- Name -- Remark -- Definition -- Remarks about the
@@ -205,14 +223,34 @@ cache is currently chosen arbitrarily, could change.
 			<xs:element name="linkedDataset" minOccurs="1" maxOccurs="unbounded">
 				<xs:complexType>
 					<xs:sequence>
-						<xs:element name="datasetID" type="xs:string"/>
-						<xs:element name="GmlFilename" type="xs:string"/>
-						<xs:element name="WfsEndpoint" type="xs:string" minOccurs="0" maxOccurs="1"/>
-						<xs:element name="WfsVersion" type="xs:string" minOccurs="0" maxOccurs="1"/>
-						<xs:element name="WfsStoredQuery" type="xs:string" minOccurs="0" maxOccurs="1"/>
-
+						<xs:element name="datasetID" type="xs:string">
+    						<xs:annotation>
+    							<xs:documentation></xs:documentation>
+    						</xs:annotation>
+    					</xs:element>
+						<xs:element name="GmlFilename" type="xs:string">
+    						<xs:annotation>
+    							<xs:documentation></xs:documentation>
+    						</xs:annotation>
+    					</xs:element>
+						<xs:element name="WfsEndpoint" type="xs:string" minOccurs="0" maxOccurs="1">
+    						<xs:annotation>
+    							<xs:documentation></xs:documentation>
+    						</xs:annotation>
+    					</xs:element>
+						<xs:element name="WfsVersion" type="xs:string" minOccurs="0" maxOccurs="1">
+    						<xs:annotation>
+    							<xs:documentation></xs:documentation>
+    						</xs:annotation>
+    					</xs:element>
+						<xs:element name="WfsStoredQuery" type="xs:string" minOccurs="0" maxOccurs="1">
+    						<xs:annotation>
+    							<xs:documentation></xs:documentation>
+    						</xs:annotation>
+    					</xs:element>
 					</xs:sequence>
-				</xs:complexType></xs:element>
+				</xs:complexType>
+            </xs:element>
 
 </xs:sequence>
 </xs:complexType>
