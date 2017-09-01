@@ -9,6 +9,7 @@
   <connectionParameters>
     <entry key="dbtype">app-schema</entry>
     <entry key="url">file:data/reporting/CDDA/cdda.appschema</entry>
+    <entry key="namespace">https://eionet.europa.eu/reporting/cdda/draft</entry>
   </connectionParameters>
   <__default>false</__default>
 </dataStore>

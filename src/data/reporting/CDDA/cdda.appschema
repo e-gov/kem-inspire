@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<appschema:AppSchemaDataAccess xmlns:ns2="http://www.opengis.net/ogc" xmlns:appschema="http://www.geotools.org/app-schema">
+<appschema:AppSchemaDataAccess
+    xmlns:ns2="http://www.opengis.net/ogc"
+    xmlns:appschema="http://www.geotools.org/app-schema">
     <namespaces>
         <Namespace>
             <prefix>xsi</prefix>
@@ -14,7 +16,13 @@
             <uri>https://eionet.europa.eu/reporting/cdda/draft</uri>
         </Namespace>
     </namespaces>
-    <includedTypes/>
+    <includedTypes>
+        <Include
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xsi:type="xs:string">includetypes.xml
+        </Include>
+    </includedTypes>
     <sourceDataStores>
         <DataStore>
             <id>dataStore</id>
@@ -32,47 +40,37 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>https://eionet.europa.eu/reporting/cdda/draft/CDDA_2018_Type2.xsd</schemaUri>
+            <schemaUri>
+                https://eionet.europa.eu/reporting/cdda/draft/CDDA_2018_Type2.xsd
+            </schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
         <FeatureTypeMapping>
-            <!-- 2017.07.22 @tkardi: From here onwards it's simply a
-                placeholder, needs investigation... and internet connection ;)
-            -->
             <sourceDataStore>dataStore</sourceDataStore>
-            <sourceType>cdda_reporting_dataset</sourceType>
+            <sourceType>cdda_reporting</sourceType>
             <targetElement>cdda:Type2_LinkedCdda</targetElement>
+            <isDenormalised>false</isDenormalised>
             <attributeMappings>
                 <AttributeMapping>
-                    <targetAttribute>linkedDataset/datasetID</targetAttribute>
+                    <targetAttribute>DesignatedArea</targetAttribute>
                     <sourceExpression>
-                        <OCQL>datasetid</OCQL>
+                        <OCQL>id</OCQL>
+                        <linkElement>designatedarea</linkElement>
+                        <linkField>FEATURE_LINK</linkField>
                     </sourceExpression>
+                    <isMultiple>true</isMultiple>
+                    <isDenormalised>false</isDenormalised>
                 </AttributeMapping>
                 <AttributeMapping>
-                    <targetAttribute>linkedDataset/GmlFilename</targetAttribute>
+                    <targetAttribute>linkedDataset</targetAttribute>
                     <sourceExpression>
-                        <OCQL>filename</OCQL>
+                        <OCQL>id</OCQL>
+                        <linkElement>linkeddataset</linkElement>
+                        <linkField>FEATURE_LINK[1]</linkField>
                     </sourceExpression>
-                </AttributeMapping>
-                <AttributeMapping>
-                    <targetAttribute>linkedDataset/WfsEndpoint</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>wfsendpoint</OCQL>
-                    </sourceExpression>
-                </AttributeMapping>
-                <AttributeMapping>
-                    <targetAttribute>linkedDataset/WfsVersion</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>wfsversion</OCQL>
-                    </sourceExpression>
-                </AttributeMapping>
-                <AttributeMapping>
-                    <targetAttribute>linkedDataset/WfsStoredQuery</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>wfsstoredquery</OCQL>
-                    </sourceExpression>
+                    <isMultiple>true</isMultiple>
+                    <isDenormalised>false</isDenormalised>
                 </AttributeMapping>
             </attributeMappings>
         </FeatureTypeMapping>
