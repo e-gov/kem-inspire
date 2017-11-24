@@ -39,13 +39,13 @@
         <FeatureTypeMapping>
             <mappingName>designatedarea</mappingName>
             <sourceDataStore>dataStore</sourceDataStore>
-            <sourceType>cdda_reporting_designatedarea</sourceType>
+            <sourceType>inspire__cdda_desig_area</sourceType>
             <targetElement>cdda:DesignatedArea</targetElement>
             <attributeMappings>
                 <AttributeMapping>
                     <targetAttribute>FEATURE_LINK</targetAttribute>
                     <idExpression>
-                        <OCQL>pslocalid</OCQL>
+                        <OCQL>id_localid</OCQL>
                     </idExpression>
                     <sourceExpression>
                         <OCQL>cdda_reporting</OCQL>
@@ -54,28 +54,139 @@
                 <AttributeMapping>
                     <targetAttribute>PSlocalId</targetAttribute>
                     <sourceExpression>
-                        <OCQL>pslocalid</OCQL>
+                        <OCQL>id_localid</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>PSnamespace</targetAttribute>
                     <sourceExpression>
-                        <OCQL>psnamespace</OCQL>
+                        <OCQL>id_namespace</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>PSversionId</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>id_versionid</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>containedBy</targetAttribute>
                     <sourceExpression>
-                        <OCQL>datasetid</OCQL>
+                        <OCQL>dataset_id</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>cddaId</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>cdda_id</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>nationalId</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>national_id</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>designatedAreaType</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>designated_area_type</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>area</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>site_area</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>majorEcosystemType</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>major_ecosystem_type</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>iucnCategory</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>iucn_category</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>isoCountryCode</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>cdda_country_code</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>isoEntityCode</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>cdda_region_code</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>spatialDataDissemination</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>spatial_data_dissemination</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>resolutionCode</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>spatial_resolution_code</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>marineAreaPercentage</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>marine_area_percentage</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>eionetChangeDate</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>eionet_change_date</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>eionetChangeType</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>eionet_change_type</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>eionetEditedBy</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>eionet_edited_by</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>eionetInstitute</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>eionet_institute</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>remark</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>remark</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>siteEnded</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>site_ended</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+
+
+
             </attributeMappings>
         </FeatureTypeMapping>
 
         <FeatureTypeMapping>
             <mappingName>linkeddataset</mappingName>
             <sourceDataStore>dataStore</sourceDataStore>
-            <sourceType>cdda_reporting_dataset</sourceType>
+            <sourceType>inspire__cdda_reporting_dataset</sourceType>
             <targetElement>cdda:linkedDataset</targetElement>
             <attributeMappings>
                 <AttributeMapping>

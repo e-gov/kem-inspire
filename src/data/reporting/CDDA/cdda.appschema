@@ -48,10 +48,16 @@
     <typeMappings>
         <FeatureTypeMapping>
             <sourceDataStore>dataStore</sourceDataStore>
-            <sourceType>cdda_reporting</sourceType>
+            <sourceType>inspire__cdda_reporting</sourceType>
             <targetElement>cdda:Type2_LinkedCdda</targetElement>
             <isDenormalised>false</isDenormalised>
             <attributeMappings>
+                <AttributeMapping>
+                    <targetAttribute>cdda:Type2_LinkedCdda</targetAttribute>
+                    <idExpression>
+                        <OCQL>id</OCQL>
+                    </idExpression>
+                </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>DesignatedArea</targetAttribute>
                     <sourceExpression>
