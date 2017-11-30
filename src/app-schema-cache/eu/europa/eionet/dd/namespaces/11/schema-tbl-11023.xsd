@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://dd.eionet.europa.eu/namespaces/874" xmlns:ddattrs="http://dd.eionet.europa.eu/namespaces/3" xmlns:isoattrs="http://dd.eionet.europa.eu/namespaces/2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://dd.eionet.europa.eu/namespaces/874" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema  http://www.w3.org/2001/XMLSchema.xsd">
+    <xs:element name="LinkedDataset">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                <isoattrs:Name>Linked dataset</isoattrs:Name>
+                <ddattrs:ShortDescription>The LinkedDataset table provides metadata about one or many external files the CDDA Designated Area table is referencing to.</ddattrs:ShortDescription>
+                <isoattrs:Definition>The LinkedDataset table provides metadata about one or many external files the CDDA Designated Area table is referencing to. The information can be either the name of an external GML file delivered in the same reporting envelope or information to access an INSPIRE Download Service. &#13;
+&#13;
+The LinkedDataset acts as a bridging element between the records of the Designated Area table and the records of an external GML file or the INSPIRE Protected Site records which contain the relevant spatial information.</isoattrs:Definition>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="Row">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="1" minOccurs="1" ref="datasetId"/>
+                            <xs:element maxOccurs="1" minOccurs="1" ref="gmlFileName"/>
+                            <xs:element maxOccurs="1" minOccurs="0" ref="wfsEndpoint"/>
+                            <xs:element maxOccurs="1" minOccurs="0" ref="wfsVersion"/>
+                            <xs:element maxOccurs="1" minOccurs="0" ref="wfsStoredQuery"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="datasetId">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                <ddattrs:Responsible>4040959</ddattrs:Responsible>
+                <ddattrs:PublicOrInternal>Administrative attribute</ddattrs:PublicOrInternal>
+                <ddattrs:Methodology>This value is required.&#13;
+&#13;
+The reporters are free to assign any integer value from 1 to 99999 to the reported GML files as the file's unique identifiers.</ddattrs:Methodology>
+                <isoattrs:Definition>An arbitrary integer value which is used as a unique primary key for external Type 1 file defined in the LinkedDataset table, and as a foreign key (containedBy) in the DesignatedArea table.</isoattrs:Definition>
+                <isoattrs:Name>Dataset ID</isoattrs:Name>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:totalDigits value="5"/>
+                <xs:minInclusive value="1"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="gmlFileName">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                <ddattrs:Responsible>4040959</ddattrs:Responsible>
+                <ddattrs:PublicOrInternal>Administrative attribute</ddattrs:PublicOrInternal>
+                <ddattrs:Methodology>This value is required.</ddattrs:Methodology>
+                <isoattrs:Definition>The corresponding Type 1 file name (INSPIRE Protected Sites version 4.0 encoded as GML), which contains the spatial component of the reporting.</isoattrs:Definition>
+                <isoattrs:Name>GML file name</isoattrs:Name>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="255"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="wfsEndpoint">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                <ddattrs:Responsible>4040959</ddattrs:Responsible>
+                <ddattrs:PublicOrInternal>undefined</ddattrs:PublicOrInternal>
+                <ddattrs:Methodology>The value shall not include any further service request, like getcapabilities.&#13;
+&#13;
+The WFS endpoint URI together with the other related elements is needed to build a web service request to harvest the Type 1 feature (INSPIRE Protected Sites).</ddattrs:Methodology>
+                <isoattrs:Definition>URI of the INSPIRE Download Service (WFS or Atom Feed) providing the Type 1 part of the reporting.</isoattrs:Definition>
+                <isoattrs:Name>Web Feature Service endpoint</isoattrs:Name>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="1000"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="wfsVersion">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                <ddattrs:Responsible>4040959</ddattrs:Responsible>
+                <ddattrs:PublicOrInternal>Administrative attribute</ddattrs:PublicOrInternal>
+                <ddattrs:Methodology>The full version number must be supplied (“2.0.0”), not the abbreviated form (“2”).&#13;
+&#13;
+Please note that a INSPIRE complaint Download Service needs to be conformant with OGC Web Feature Service 2.0.&#13;
+&#13;
+The WFS version together with the other related elements is needed to build a web service request to harvest the Type 1 feature (INSPIRE Protected Sites).</ddattrs:Methodology>
+                <isoattrs:Definition>Service version-Value specifies the current version number of the INSPIRE Download Service.</isoattrs:Definition>
+                <isoattrs:Name>Web Feature Service version</isoattrs:Name>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="255"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+    <xs:element name="wfsStoredQuery">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                <ddattrs:Responsible>4040959</ddattrs:Responsible>
+                <ddattrs:PublicOrInternal>undefined</ddattrs:PublicOrInternal>
+                <ddattrs:Methodology>Please provide the stored query only if it is different from the GetFeatureById which is mandatory by INSPIRE specifications on Download Services. &#13;
+&#13;
+The stored query together with the other related elements is needed to build a web service request to harvest the Type 1 feature (INSPIRE Protected Sites).</ddattrs:Methodology>
+                <isoattrs:Definition>Name of the stored query on the WFS server in order to be used in the context of a GetFeature request.</isoattrs:Definition>
+                <isoattrs:Name>Web Feature Service stored query</isoattrs:Name>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:minLength value="1"/>
+                <xs:maxLength value="1000"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+</xs:schema>

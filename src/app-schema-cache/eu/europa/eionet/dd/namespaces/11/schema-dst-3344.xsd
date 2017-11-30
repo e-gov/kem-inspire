@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:datasets="http://dd.eionet.europa.eu/namespaces/1" xmlns:dd11="http://dd.eionet.europa.eu/namespaces/11" xmlns:dd873="http://dd.eionet.europa.eu/namespaces/873" xmlns:dd874="http://dd.eionet.europa.eu/namespaces/874" xmlns:ddattrs="http://dd.eionet.europa.eu/namespaces/3" xmlns:isoattrs="http://dd.eionet.europa.eu/namespaces/2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://dd.eionet.europa.eu/namespaces/11" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema http://www.w3.org/2001/XMLSchema.xsd">
+    <xs:import namespace="http://dd.eionet.europa.eu/namespaces/873" schemaLocation="schema-tbl-11022.xsd"/>
+    <xs:import namespace="http://dd.eionet.europa.eu/namespaces/874" schemaLocation="schema-tbl-11023.xsd"/>
+    <xs:element name="CDDA">
+        <xs:annotation>
+            <xs:documentation xml:lang="en">
+                <isoattrs:Name>Common Database on Designated Areas (CDDA)</isoattrs:Name>
+                <isoattrs:Definition>The definition of a protected area adopted by IUCN is:&#13;
+&#13;
+A clearly defined geographical space, recognised, dedicated and managed, through legal or other effective means, to achieve the long-term conservation of nature with associated ecosystem services and cultural values.&#13;
+&#13;
+Definitions and details are basing on IUCN publication: "Guidelines for Applying Protected Area Management Categories" that can be found in pdf format at url: &#13;
+&#13;
+http://cmsdata.iucn.org/downloads/iucn_assignment_1.pdf&#13;
+&#13;
+The definition of a "designated area" within the CDDA is very similar. The "designation types" are grouped according to three categories (A, B and C), which clearly reflects the IUCN note above by also identifying designation types in other sectors "or other effective means".&#13;
+&#13;
+As some of the designation types do not result in a specific list of sites but may be used as a designation within individual areas, in some cases identified under other legislation, the definition of the CDDA also includes "area covering" designations such as the protection of the complete distribution of certain habitats. This is an addition to the IUCN "protected area" definition.&#13;
+&#13;
+The CDDA is the official source of protected area information from European countries to the World Database of Protected Areas, maintained by the UNEP-WCMC.&#13;
+&#13;
+The database was formerly known as the "Common Database on Designated Areas" which is the origin of the abbreviation "CDDA". The building of the database was a common effort between UNEP-WCMC, Council of Europe and EEA. Each organisation maintained their respective databases of designated areas and these databases were merged to one common database by the EEA and disseminated from the EEA website. Today the database available from the EEA website holds information from the Eionet partner countries only, why the name was changed to "Nationally designated areas inventory". The abbreviation CDDA was however kept.&#13;
+</isoattrs:Definition>
+                <isoattrs:Keyword>Biodiversity</isoattrs:Keyword>
+                <isoattrs:Keyword>Conservation</isoattrs:Keyword>
+                <isoattrs:Keyword>Designation</isoattrs:Keyword>
+                <isoattrs:Keyword>Fauna</isoattrs:Keyword>
+                <isoattrs:Keyword>Flora</isoattrs:Keyword>
+                <isoattrs:Keyword>Landscape</isoattrs:Keyword>
+                <isoattrs:Keyword>Nature</isoattrs:Keyword>
+                <isoattrs:Keyword>Protection</isoattrs:Keyword>
+                <ddattrs:ShortDescription>Database about nationally designated areas, which includes nature protection sites such as national parks and nature reserves but also other designated areas providing durable protection for flora and fauna, e.g. through management schemes.</ddattrs:ShortDescription>
+                <ddattrs:Methodology>The available CDDA data delivered earlier to EEA are provided in a template based on these Data dictionary definitions. Reporters are asked to review and update the data, providing the information on the current situation of the designated areas in their countries. &#13;
+&#13;
+- more to be added -&#13;
+&#13;
+- relation between type1 and type2 data&#13;
+&#13;
+- relation with designation types reporting&#13;
+&#13;
+If you have any questions about the format and content of the data request please contact the CDDA helpdesk, e-mail: cdda.helpdesk@eionet.europa.eu</ddattrs:Methodology>
+                <ddattrs:PlannedUpdFreq>Annual</ddattrs:PlannedUpdFreq>
+                <ddattrs:Version>May 2017</ddattrs:Version>
+                <ddattrs:obligation>[EEA AWP] Nationally designated areas (CDDA)</ddattrs:obligation>
+                <ddattrs:Owner>Mette Palitzsch Lund</ddattrs:Owner>
+                <ddattrs:Responsible>Marek STARON</ddattrs:Responsible>
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="1" ref="dd873:DesignatedArea"/>
+                <xs:element maxOccurs="1" minOccurs="1" ref="dd874:LinkedDataset"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
