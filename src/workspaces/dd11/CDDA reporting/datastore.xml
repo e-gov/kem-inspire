@@ -4,12 +4,12 @@
   <type>Application Schema DataAccess</type>
   <enabled>true</enabled>
   <workspace>
-    <id>WorkspaceInfoImpl--c118f19:15e32b8c4c0:-7ffe</id>
+    <id>WorkspaceInfoImpl-1e1c91f2:1600408f791:-7ffe</id>
   </workspace>
   <connectionParameters>
     <entry key="dbtype">app-schema</entry>
+    <entry key="namespace">http://dd.eionet.europa.eu/namespaces/11</entry>
     <entry key="url">file:data/reporting/CDDA/cdda.appschema</entry>
-    <entry key="namespace">https://eionet.europa.eu/reporting/cdda/draft</entry>
   </connectionParameters>
   <__default>false</__default>
 </dataStore>

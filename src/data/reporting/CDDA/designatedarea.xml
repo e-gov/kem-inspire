@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<appschema:AppSchemaDataAccess xmlns:ns2="http://www.opengis.net/ogc" xmlns:appschema="http://www.geotools.org/app-schema">
+<appschema:AppSchemaDataAccess
+    xmlns:ns2="http://www.opengis.net/ogc"
+    xmlns:appschema="http://www.geotools.org/app-schema">
     <namespaces>
         <Namespace>
             <prefix>xsi</prefix>
@@ -10,8 +12,16 @@
             <uri>http://www.w3.org/1999/xlink</uri>
         </Namespace>
         <Namespace>
-            <prefix>cdda</prefix>
-            <uri>https://eionet.europa.eu/reporting/cdda/draft</uri>
+            <prefix>dd11</prefix>
+            <uri>http://dd.eionet.europa.eu/namespaces/11</uri>
+        </Namespace>
+        <Namespace>
+            <prefix>dd874</prefix>
+            <uri>http://dd.eionet.europa.eu/namespaces/874</uri>
+        </Namespace>
+        <Namespace>
+            <prefix>dd873</prefix>
+            <uri>http://dd.eionet.europa.eu/namespaces/873</uri>
         </Namespace>
     </namespaces>
     <includedTypes/>
@@ -32,18 +42,45 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>https://eionet.europa.eu/reporting/cdda/draft/CDDA_2018_Type2.xsd</schemaUri>
+            <schemaUri>
+                https://dd.eionet.europa.eu/namespaces/11/schema-dst-3344.xsd
+            </schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
         <FeatureTypeMapping>
             <mappingName>designatedarea</mappingName>
             <sourceDataStore>dataStore</sourceDataStore>
-            <sourceType>inspire__cdda_desig_area</sourceType>
-            <targetElement>cdda:DesignatedArea</targetElement>
+            <sourceType>inspire__cdda_reporting</sourceType>
+            <targetElement>dd873:DesignatedArea</targetElement>
             <attributeMappings>
                 <AttributeMapping>
                     <targetAttribute>FEATURE_LINK</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>id</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>dd873:Row</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>id</OCQL>
+                        <linkElement>designatedarearow</linkElement>
+                        <linkField>FEATURE_LINK[3]</linkField>
+                    </sourceExpression>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <isMultiple>true</isMultiple>
+                    <isDenormalised>true</isDenormalised>
+                </AttributeMapping>
+            </attributeMappings>
+        </FeatureTypeMapping>
+        <FeatureTypeMapping>
+            <mappingName>designatedarearow</mappingName>
+            <sourceDataStore>dataStore</sourceDataStore>
+            <sourceType>inspire__cdda_desig_area</sourceType>
+            <targetElement>dd873:Row</targetElement>
+            <attributeMappings>
+                <AttributeMapping>
+                    <targetAttribute>FEATURE_LINK[3]</targetAttribute>
                     <idExpression>
                         <OCQL>id_localid</OCQL>
                     </idExpression>
@@ -94,7 +131,7 @@
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
-                    <targetAttribute>area</targetAttribute>
+                    <targetAttribute>siteArea</targetAttribute>
                     <sourceExpression>
                         <OCQL>site_area</OCQL>
                     </sourceExpression>
@@ -112,13 +149,13 @@
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
-                    <targetAttribute>isoCountryCode</targetAttribute>
+                    <targetAttribute>cddaCountryCode</targetAttribute>
                     <sourceExpression>
                         <OCQL>cdda_country_code</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
-                    <targetAttribute>isoEntityCode</targetAttribute>
+                    <targetAttribute>cddaRegionCode</targetAttribute>
                     <sourceExpression>
                         <OCQL>cdda_region_code</OCQL>
                     </sourceExpression>
@@ -130,7 +167,7 @@
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
-                    <targetAttribute>resolutionCode</targetAttribute>
+                    <targetAttribute>spatialResolutionCode</targetAttribute>
                     <sourceExpression>
                         <OCQL>spatial_resolution_code</OCQL>
                     </sourceExpression>
@@ -175,57 +212,6 @@
                     <targetAttribute>siteEnded</targetAttribute>
                     <sourceExpression>
                         <OCQL>site_ended</OCQL>
-                    </sourceExpression>
-                </AttributeMapping>
-
-
-
-            </attributeMappings>
-        </FeatureTypeMapping>
-
-        <FeatureTypeMapping>
-            <mappingName>linkeddataset</mappingName>
-            <sourceDataStore>dataStore</sourceDataStore>
-            <sourceType>inspire__cdda_reporting_dataset</sourceType>
-            <targetElement>cdda:linkedDataset</targetElement>
-            <attributeMappings>
-                <AttributeMapping>
-                    <targetAttribute>FEATURE_LINK[1]</targetAttribute>
-                    <idExpression>
-                        <OCQL>datasetid</OCQL>
-                    </idExpression>
-                    <sourceExpression>
-                        <OCQL>cdda_reporting</OCQL>
-                    </sourceExpression>
-                </AttributeMapping>
-                <AttributeMapping>
-                    <targetAttribute>datasetID</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>datasetid</OCQL>
-                    </sourceExpression>
-                </AttributeMapping>
-                <AttributeMapping>
-                    <targetAttribute>GmlFilename</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>filename</OCQL>
-                    </sourceExpression>
-                </AttributeMapping>
-                <AttributeMapping>
-                    <targetAttribute>WfsEndpoint</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>wfsendpoint</OCQL>
-                    </sourceExpression>
-                </AttributeMapping>
-                <AttributeMapping>
-                    <targetAttribute>WfsVersion</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>wfsversion</OCQL>
-                    </sourceExpression>
-                </AttributeMapping>
-                <AttributeMapping>
-                    <targetAttribute>WfsStoredQuery</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>wfsstoredquery</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
             </attributeMappings>
