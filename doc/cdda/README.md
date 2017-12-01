@@ -52,14 +52,37 @@ a step further and use [an extra tool](#packaging-of-type1-and-type2) to extract
 the required portion of the response (Type2) and pregenerate the ProtectedSite
 GML files (Type1) aswell.  
 
+
 ## XSD files
 The EEA has published the XML schemas for use in data transformation on their
 [Data Dictionary webpage](http://dd.eionet.europa.eu/datasets/3344). These
-xsd files describe the following sample output
+XSD files will produce a XML document with the following structure:
+
+```
+- {http://dd.eionet.europe.ee/namespaces/11}:CDDA
+    - {http://dd.eionet.europe.ee/namespaces/873}:DesignatedArea
+        - {http://dd.eionet.europe.ee/namespaces/873}:Row
+            - {http://dd.eionet.europe.ee/namespaces/873}:cddaId
+            - {http://dd.eionet.europe.ee/namespaces/873}:nationalId
+            - {http://dd.eionet.europe.ee/namespaces/873}:PSlocalId
+            - [...]
+        - {http://dd.eionet.europe.ee/namespaces/873}:Row
+        - {http://dd.eionet.europe.ee/namespaces/873}:Row
+        - [...]
+    - {http://dd.eionet.europe.ee/namespaces/874}:LinkedDataset
+            - {http://dd.eionet.europe.ee/namespaces/874}:Row
+                - {http://dd.eionet.europe.ee/namespaces/874}:datasetId
+                - {http://dd.eionet.europe.ee/namespaces/874}:gmlFileName
+                - [...]
+            - [...]
+```
+
+As an example output, let's consider:
 
 ```
 @TODO: a placeholder for the expected Type2 xml output file contents.
 ```
+> Example Type2 dataset encoding provided by the EEA.
 
 In order for the xsd files to be used with GeoServer app-schema a slight
 adjustment is needed in both the DesignatedArea and LinkedDataset schema files:
@@ -79,9 +102,48 @@ We are going to be mapping three elements `dd11:CDDA` (from the table
 `inspire__cdda_reporting`) and it's immediate children `dd873:DesignatedArea`
 (from `inspire__cdda_desig_area`) and `dd874:LinkedDataset`
 (from `inspire__cdda_reporting_dataset`). The XML namespace notation is the
-same as the previous samples are using.
+same as the previous [samples](#XSD) are using.
 
 @TODO: should we also have DDL syntax for DB structures creation?
+
+The `inspire__cdda_reporting` table should have as many rows
+as many `dd11:CDDA` elements are needed which should amount to 1. This is the
+element that shall be encoded within a single `wfs:FeatureCollection/wfs:member`.
+
+Because the multiplicity of both `dd874:LinkedDataset` and `dd873:DesignatedArea`
+within `dd11:CDDA` is defined as `maxOccurs="1" minOccurs="1"` these will be
+encoded as single elements. If you'd think of `dd11:CDDA` as a DBMS schema then
+the LinkedDataset and DesignatedArea elements could be thought of as DB
+relations, each with a 0 to "unbounded" number of rows.
+
+The `inspire__cdda_reporting_dataset` holds the data for the
+`dd874:LinkedDataset` elemen. It's relation to `inspire__cdda_reporting` is
+defined through
+
+```
+inspire__cdda_reporting.id = inspire__cdda_reporting_dataset.cdda_reporting
+```
+
+Every row in the `inspire__cdda_reporting_dataset` will represent one Type1
+GML file / WFS service query and each row maps to `dd874:Row`.
+
+The `ìnspire__cdda_desig_area` table holds the data for the
+`dd873:DesignatedArea` element. It's relation to specific Type1 dataset is
+defined through
+
+```
+inspire__cdda_desig_area.datasetid = inspire__cdda_reporting_dataset.datasetid
+```
+
+and to `dd11:CDDA` through
+
+```
+inspire__cdda_desig_area.cdda_reporting = inspire__cdda_reporting.id
+```
+
+Every row in the `inspire__cdda_desig_area` will represent one designated area
+that's reported upon and each row here maps to `dd873:Row`.
+
 
 ## Sample queries and output
 
