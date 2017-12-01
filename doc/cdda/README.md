@@ -102,7 +102,7 @@ We are going to be mapping three elements `dd11:CDDA` (from the table
 `inspire__cdda_reporting`) and it's immediate children `dd873:DesignatedArea`
 (from `inspire__cdda_desig_area`) and `dd874:LinkedDataset`
 (from `inspire__cdda_reporting_dataset`). The XML namespace notation is the
-same as the previous [samples](#XSD) are using.
+same as the previous [samples](#xsd-files) are using.
 
 @TODO: should we also have DDL syntax for DB structures creation?
 
@@ -146,6 +146,123 @@ that's reported upon and each row here maps to `dd873:Row`.
 
 
 ## Sample queries and output
+As stated before the main idea of this work is to make use of a known API for
+querying CDDA Type2 data and the OGC WebFeatureService (WFS) is one possibility
+here. So using the `GetFeature` request we can do
+
+```
+$ http "http://localhost:8080/geoserver/dd11/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dd11:CDDA"
+```
+
+which will yield HTTP headers
+
+```
+HTTP/1.1 200 OK
+Content-Disposition: inline; filename=geoserver-GetFeature.text
+Content-Encoding: gzip
+Content-Type: text/xml; subtype=gml/3.2
+Server: Jetty(9.2.13.v20150730)
+Transfer-Encoding: chunked
+```
+
+and based on sample dataset from the Estonian Environmental Agency will return
+a HTTP response like (identiation added by hand for readability)
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection
+    xmlns:wfs="http://www.opengis.net/wfs/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:isoattrs="http://dd.eionet.europa.eu/namespaces/2"
+    xmlns:ddattrs="http://dd.eionet.europa.eu/namespaces/3"
+    xmlns:hfp="http://www.w3.org/2001/XMLSchema-hasFacetAndProperty"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:dd874="http://dd.eionet.europa.eu/namespaces/874"
+    xmlns:dd873="http://dd.eionet.europa.eu/namespaces/873"
+    xmlns:datasets="http://dd.eionet.europa.eu/namespaces/1"
+    xmlns:dd11="http://dd.eionet.europa.eu/namespaces/11"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    numberMatched="unknown" numberReturned="1" timeStamp="2017-11-30T16:30:38.405Z"
+    xsi:schemaLocation="http://www.opengis.net/wfs/2.0
+    http://localhost:8080/geoserver/schemas/wfs/2.0/wfs.xsd
+    http://dd.eionet.europa.eu/namespaces/11
+    https://dd.eionet.europa.eu/namespaces/11/schema-dst-3344.xsd
+    http://www.opengis.net/gml/3.2 http://localhost:8080/geoserver/schemas/gml/3.2.1/gml.xsd">
+    <wfs:member>
+        <dd11:CDDA gml:id="1">
+            <dd873:DesignatedArea>
+                <dd873:Row>
+                    <dd873:cddaId>180617</dd873:cddaId>
+                    <dd873:nationalId>1731</dd873:nationalId>
+                    <dd873:PSlocalId>1731</dd873:PSlocalId>
+                    <dd873:PSnamespace>ee-eelis-ala</dd873:PSnamespace>
+                    <dd873:PSversionId>20140213090427</dd873:PSversionId>
+                    <dd873:designatedAreaType>designatedSite</dd873:designatedAreaType>
+                    <dd873:cddaCountryCode>EE</dd873:cddaCountryCode>
+                    <dd873:cddaRegionCode>EE</dd873:cddaRegionCode>
+                    <dd873:designationTypeCode>EE13</dd873:designationTypeCode>
+                    <dd873:iucnCategory>V</dd873:iucnCategory>
+                    <dd873:siteArea>8.8</dd873:siteArea>
+                    <dd873:majorEcosystemType>T</dd873:majorEcosystemType>
+                    <dd873:spatialDataDissemination>01</dd873:spatialDataDissemination>
+                    <dd873:spatialResolutionCode>5</dd873:spatialResolutionCode>
+                    <dd873:eionetChangeDate>2017-11-09T17:40:54.065Z</dd873:eionetChangeDate>
+                    <dd873:eionetChangeType>U</dd873:eionetChangeType>
+                    <dd873:eionetEditedBy>KTK EELIS admin </dd873:eionetEditedBy>
+                    <dd873:eionetInstitute>EtEA</dd873:eionetInstitute>
+                    <dd873:siteEnded>0</dd873:siteEnded>
+                    <dd873:containedBy>999</dd873:containedBy>
+                </dd873:Row>
+                <dd873:Row>
+                    <dd873:cddaId>171902</dd873:cddaId>
+                    <dd873:nationalId>111</dd873:nationalId>
+                    <dd873:PSlocalId>111</dd873:PSlocalId>
+                    <dd873:PSnamespace>ee-eelis-ala</dd873:PSnamespace>
+                    <dd873:PSversionId>20140313143829</dd873:PSversionId>
+                    <dd873:designatedAreaType>designatedSite</dd873:designatedAreaType>
+                    <dd873:cddaCountryCode>EE</dd873:cddaCountryCode>
+                    <dd873:cddaRegionCode>EE</dd873:cddaRegionCode>
+                    <dd873:designationTypeCode>EE18</dd873:designationTypeCode>
+                    <dd873:iucnCategory>III</dd873:iucnCategory>
+                    <dd873:siteArea>0.0</dd873:siteArea>
+                    <dd873:majorEcosystemType>T</dd873:majorEcosystemType>
+                    <dd873:spatialDataDissemination>01</dd873:spatialDataDissemination>
+                    <dd873:spatialResolutionCode>5</dd873:spatialResolutionCode>
+                    <dd873:eionetChangeDate>2017-11-09T17:40:54.065Z</dd873:eionetChangeDate>
+                    <dd873:eionetChangeType>U</dd873:eionetChangeType>
+                    <dd873:eionetEditedBy>KTK EELIS admin </dd873:eionetEditedBy>
+                    <dd873:eionetInstitute>EtEA</dd873:eionetInstitute>
+                    <dd873:siteEnded>0</dd873:siteEnded>
+                    <dd873:containedBy>999</dd873:containedBy>
+                </dd873:Row>
+                <dd873:Row>
+                    ... [output truncated for brevity] ...
+                </dd873:Row>
+            </dd873:DesignatedArea>
+            <dd874:LinkedDataset>
+                <dd874:Row>
+                    <dd874:datasetId>999</dd874:datasetId>
+                    <dd874:gmlFileName>nn.gml</dd874:gmlFileName>
+                    <dd874:wfsEndpoint>http://n.io/ows?</dd874:wfsEndpoint>
+                    <dd874:wfsVersion>2.0.0</dd874:wfsVersion>
+                    <dd874:wfsStoredQuery>http://n.io/ops/getspatialdataset</dd874:wfsStoredQuery>
+                </dd874:Row>
+                <dd874:Row>
+                    <dd874:datasetId>1000</dd874:datasetId>
+                    <dd874:gmlFileName>mm.gml</dd874:gmlFileName>
+                    <dd874:wfsEndpoint>http://n.io/ows?</dd874:wfsEndpoint>
+                    <dd874:wfsVersion>2.0.0</dd874:wfsVersion>
+                    <dd874:wfsStoredQuery>http://n.io/ops/getsecretdataset</dd874:wfsStoredQuery>
+                </dd874:Row>
+            </dd874:LinkedDataset>
+        </dd11:CDDA>
+    </wfs:member>
+</wfs:FeatureCollection>
+```
+
+NB! This request is based on a test dataset and does not yet have the right
+encoding as regards to the various enumerations used. Similarly the
+LinkedDataset elements contain gibberish.
 
 
 ## Packaging of Type1 and Type2
