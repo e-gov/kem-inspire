@@ -22,7 +22,7 @@ The first alternative requires a multi-file package to be uploaded to Reportnet
 multi-file package will consist of 1 or more GML files with spatial data from
 an Inspire compliant ps:ProtectedSite dataset (called Type1 data), and one
 XML file with all the required reporting-data (called Type2 data). The Type2
-dataset will have references to the Type1 dataset on an object basis so  
+dataset will have references to the Type1 dataset on an object basis so
 every "row" in the Type2 dataset will have a reference to feature in the Type1
 dataset.
 
@@ -52,11 +52,39 @@ a step further and use [an extra tool](#packaging-of-type1-and-type2) to extract
 the required portion of the response (Type2) and pregenerate the ProtectedSite
 GML files (Type1) aswell.  
 
-## Input data model
-
 ## XSD files
+The EEA has published the XML schemas for use in data transformation on their
+[Data Dictionary webpage](http://dd.eionet.europa.eu/datasets/3344). These
+xsd files describe the following sample output
+
+```
+@TODO: a placeholder for the expected Type2 xml output file contents.
+```
+
+In order for the xsd files to be used with GeoServer app-schema a slight
+adjustment is needed in both the DesignatedArea and LinkedDataset schema files:
+both the DesignatedArea/Row and LinkedDataset/Row types need to be made
+available at the respective schema root level. Otherwise the mapping seems to
+fail with a "no top element found" exception. For a further discussion on the
+subject refer to discussion about the [GML "striping" rules](
+http://docs.geoserver.org/stable/en/user/data/app-schema/mapping-file.html#targetattributenode-optional).
+
+
+## Input data model
+The input relational data model is sketched on the following figure
+
+![Fig 2. Relational data model for input data](../img/cdda_input_datamodel.svg)
+
+We are going to be mapping three elements `dd11:CDDA` (from the table
+`inspire__cdda_reporting`) and it's immediate children `dd873:DesignatedArea`
+(from `inspire__cdda_desig_area`) and `dd874:LinkedDataset`
+(from `inspire__cdda_reporting_dataset`). The XML namespace notation is the
+same as the previous samples are using.
+
+@TODO: should we also have DDL syntax for DB structures creation?
 
 ## Sample queries and output
+
 
 ## Packaging of Type1 and Type2
 @TODO
