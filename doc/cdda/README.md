@@ -12,7 +12,7 @@ The following figure from a presentation by Stefania Morrone during the NRC EIS
 November 2018 meeting illustrates how the process is envisioned through two
 possible alternatives.
 
-![CDDA reporting linked approach](img/cdda_linked_approach.png)
+![CDDA reporting linked approach](../img/cdda_linked_approach.png)
 
 > Excerpt from a presentation by Stefania Morrone during the 23.11.2017 NRC EIS
 meeting. The full presentation is available for download at [the NRC EIS library](https://forum.eionet.europa.eu/nrc-eis-environmental-information-systems/library/meetings/2017-nrc-eis-meeting/presentations/linked-approach-epsilon-23.11.17)
