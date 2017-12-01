@@ -89,8 +89,17 @@ adjustment is needed in both the DesignatedArea and LinkedDataset schema files:
 both the DesignatedArea/Row and LinkedDataset/Row types need to be made
 available at the respective schema root level. Otherwise the mapping seems to
 fail with a "no top element found" exception. For a further discussion on the
-subject refer to discussion about the [GML "striping" rules](
-http://docs.geoserver.org/stable/en/user/data/app-schema/mapping-file.html#targetattributenode-optional).
+subject refer to documentation on GeoServer app-schemas and the
+[GML "striping" rules](http://docs.geoserver.org/stable/en/user/data/app-schema/mapping-file.html#targetattributenode-optional).
+
+The difference between the original XSD (downloaded from the EEA Data Dictionary
+on 23.11.2017) and the modified one can be seen in the commit history of this
+repo:
+- [schema-tbl-11022.xsd](https://github.com/e-gov/kem-inspire/commit/8aba6c021cd36833e61d44ae769b2ab770a7e277?diff=split#diff-1a14292e57abfb7ca97cf2e53671b9d6)
+- [schema-tbl-11023.xsd](https://github.com/e-gov/kem-inspire/commit/8aba6c021cd36833e61d44ae769b2ab770a7e277?diff=split#diff-56c568136b9c1de58815257b357c03e2)
+
+The third xsd [schema-dst-3344.xsd](https://github.com/e-gov/kem-inspire/commit/8aba6c021cd36833e61d44ae769b2ab770a7e277?diff=split#diff-bbe09d95908dc2be5109a30a79daec76)
+does not require any changes.
 
 
 ## Input data model
@@ -154,7 +163,7 @@ here. So using the `GetFeature` request we can do
 $ http "http://localhost:8080/geoserver/dd11/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dd11:CDDA"
 ```
 
-which will yield HTTP headers
+which will yield response HTTP headers
 
 ```
 HTTP/1.1 200 OK
@@ -165,7 +174,8 @@ Server: Jetty(9.2.13.v20150730)
 Transfer-Encoding: chunked
 ```
 
-and based on sample dataset from the Estonian Environmental Agency will return
+and based on sample dataset from the
+[Estonian Environment Agency](http://keskkonnaagentuur.ee/en) will return
 a HTTP response like (identiation added by hand for readability)
 
 ```
