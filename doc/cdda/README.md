@@ -12,7 +12,7 @@ The following figure from a presentation by Stefania Morrone during the NRC EIS
 November 2018 meeting illustrates how the process is envisioned through two
 possible alternatives.
 
-![CDDA reporting linked approach](../img/cdda_linked_approach.png)
+![Fig 1. CDDA reporting linked approach](../img/cdda_linked_approach.png)
 
 > Excerpt from a presentation by Stefania Morrone during the 23.11.2017 NRC EIS
 meeting. The full presentation is available for download at [the NRC EIS library](https://forum.eionet.europa.eu/nrc-eis-environmental-information-systems/library/meetings/2017-nrc-eis-meeting/presentations/linked-approach-epsilon-23.11.17)
@@ -35,7 +35,28 @@ download services and produce the required GML files.
 During the 2018 reporting campaign the first alternative will be used.
 
 ## How it works
+The idea behind this implemention is to use the [GeoServer](http://geoserver.org)
+[app-schema plugin](http://docs.geoserver.org/stable/en/user/data/app-schema/index.html)
+by utilizing the xsd schemas published by the EEA in their
+[Data Dictionary](http://dd.eionet.europa.eu/). Although a web-service oriented
+approach is not required at the moment we can still make use of the power the
+[app-schema plugin](http://docs.geoserver.org/stable/en/user/data/app-schema/index.html)
+offers for schema transformation (since our "linked" ps:ProtectedSite WFS will
+be using the same set of tools). We'll let GeoServer handle the schema
+transformation for the Type2 CDDA reporting dataset and then we can use a simple
+[WFS GetFeature request](#sample-queries-and-output) to query the dataset.
+
+This means that the response we get will not be 100% schema compliant as it will
+be served as a `wfs:member` in a `wfs:FeatureCollection`. So we'll need to go
+a step further and use [an extra tool](#packaging-of-type1-and-type2) to extract
+the required portion of the response (Type2) and pregenerate the ProtectedSite
+GML files (Type1) aswell.  
 
 ## Input data model
 
+## XSD files
+
 ## Sample queries and output
+
+## Packaging of Type1 and Type2
+@TODO
