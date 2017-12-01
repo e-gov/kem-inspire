@@ -267,3 +267,8 @@ LinkedDataset elements contain gibberish.
 
 ## Packaging of Type1 and Type2
 @TODO
+
+
+## Setup for reporting
+@TODO: + we should create a separate, easy copy-paste filepackage for settng
+this workflow up.
