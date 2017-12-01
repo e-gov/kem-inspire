@@ -59,20 +59,20 @@ The EEA has published the XML schemas for use in data transformation on their
 XSD files will produce a XML document with the following structure:
 
 ```
-- {http://dd.eionet.europe.ee/namespaces/11}:CDDA
-    - {http://dd.eionet.europe.ee/namespaces/873}:DesignatedArea
-        - {http://dd.eionet.europe.ee/namespaces/873}:Row
-            - {http://dd.eionet.europe.ee/namespaces/873}:cddaId
-            - {http://dd.eionet.europe.ee/namespaces/873}:nationalId
-            - {http://dd.eionet.europe.ee/namespaces/873}:PSlocalId
+- {http://dd.eionet.europe.eu/namespaces/11}:CDDA
+    - {http://dd.eionet.europe.eu/namespaces/873}:DesignatedArea
+        - {http://dd.eionet.europe.eu/namespaces/873}:Row
+            - {http://dd.eionet.europe.eu/namespaces/873}:cddaId
+            - {http://dd.eionet.europe.eu/namespaces/873}:nationalId
+            - {http://dd.eionet.europe.eu/namespaces/873}:PSlocalId
             - [...]
-        - {http://dd.eionet.europe.ee/namespaces/873}:Row
-        - {http://dd.eionet.europe.ee/namespaces/873}:Row
+        - {http://dd.eionet.europe.eu/namespaces/873}:Row
+        - {http://dd.eionet.europe.eu/namespaces/873}:Row
         - [...]
-    - {http://dd.eionet.europe.ee/namespaces/874}:LinkedDataset
-            - {http://dd.eionet.europe.ee/namespaces/874}:Row
-                - {http://dd.eionet.europe.ee/namespaces/874}:datasetId
-                - {http://dd.eionet.europe.ee/namespaces/874}:gmlFileName
+    - {http://dd.eionet.europe.eu/namespaces/874}:LinkedDataset
+            - {http://dd.eionet.europe.eu/namespaces/874}:Row
+                - {http://dd.eionet.europe.eu/namespaces/874}:datasetId
+                - {http://dd.eionet.europe.eu/namespaces/874}:gmlFileName
                 - [...]
             - [...]
 ```
@@ -114,7 +114,7 @@ Because the multiplicity of both `dd874:LinkedDataset` and `dd873:DesignatedArea
 within `dd11:CDDA` is defined as `maxOccurs="1" minOccurs="1"` these will be
 encoded as single elements. If you'd think of `dd11:CDDA` as a DBMS schema then
 the LinkedDataset and DesignatedArea elements could be thought of as DB
-relations, each with a 0 to "unbounded" number of rows.
+tables, each with a 0 to "unbounded" number of rows.
 
 The `inspire__cdda_reporting_dataset` holds the data for the
 `dd874:LinkedDataset` elemen. It's relation to `inspire__cdda_reporting` is
