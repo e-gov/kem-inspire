@@ -17,6 +17,12 @@ contributions how-to?
 As [Inspire](http://inspire.ec.europa.eu/) is a pan-European effort
 the working language for this repository is English.
 
+## CDDA eReporting
+There is a separate branch dedicated to the new CDDA eReporting "linking"
+approach. The resources and documentation for that can be accessed
+[here](https://github.com/e-gov/kem-inspire/tree/reporting/doc/cdda). 
+Your feedback/ideas/comments are welcome.
+
 ## GeoServer setup
 @todo - write a how-to guide how to get things up and running.
 
