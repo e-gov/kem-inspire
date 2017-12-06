@@ -131,6 +131,12 @@
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
+                    <targetAttribute>designationTypeCode</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>designation_type_code</OCQL>
+                    </sourceExpression>
+                </AttributeMapping>
+                <AttributeMapping>
                     <targetAttribute>siteArea</targetAttribute>
                     <sourceExpression>
                         <OCQL>site_area</OCQL>
