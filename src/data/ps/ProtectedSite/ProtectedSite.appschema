@@ -56,7 +56,9 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>http://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd</schemaUri>
+            <schemaUri>
+                http://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd
+            </schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
@@ -71,6 +73,9 @@
                         <OCQL>strConcat('ps.', id_localid)</OCQL>
                     </idExpression>
                 </AttributeMapping>
+
+                <!-- identification -->
+
                 <AttributeMapping>
                     <targetAttribute>ps:inspireID/base:Identifier/base:localId</targetAttribute>
                     <sourceExpression>
@@ -80,7 +85,7 @@
                 <AttributeMapping>
                     <targetAttribute>ps:inspireID/base:Identifier/base:namespace</targetAttribute>
                     <sourceExpression>
-                        <OCQL>'http://kemit.ee/Inspire/EELIS/ProtectedSite'</OCQL>
+                        <OCQL>id_namespace</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -90,7 +95,9 @@
                     </sourceExpression>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(id_versionid), 'unknown', Expression.NIL)</value>
+                        <value>
+                            if_then_else(isNull(id_versionid), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)
+                        </value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -100,6 +107,8 @@
                     </sourceExpression>
                     <enccodeIfEmpty>true</enccodeIfEmpty>
                 </AttributeMapping>
+
+                <!-- GeographicalName -->
 
                 <AttributeMapping>
                     <targetAttribute>ps:siteName/gn:GeographicalName/gn:language</targetAttribute>
@@ -113,17 +122,13 @@
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
                     <encodeIfEmpty>true</encodeIfEmpty>
-                    <!--ClientProperty>
-                        <name>xlink:href</name>
-                        <value>'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym'</value>
-                    </ClientProperty>
-                    <ClientProperty>
-                        <name>xlink:title</name>
-                        <value>'endonym'</value>
-                    </ClientProperty-->
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated'</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>'true'</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -132,17 +137,13 @@
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
                     <encodeIfEmpty>true</encodeIfEmpty>
-                    <!--ClientProperty>
-                        <name>xlink:href</name>
-                        <value>'http://inspire.ec.europa.eu/codelist/NameStatusValue/official'</value>
-                    </ClientProperty>
-                    <ClientProperty>
-                        <name>xlink:title</name>
-                        <value>'official'</value>
-                    </ClientProperty-->
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated'</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>'true'</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -153,7 +154,11 @@
                     <encodeIfEmpty>true</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated'</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>'true'</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -164,11 +169,13 @@
                     <encodeIfEmpty>true</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                            <value>'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated'</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>'true'</value>
                     </ClientProperty>
                 </AttributeMapping>
-
-
                 <AttributeMapping>
                     <targetAttribute>ps:siteName/gn:GeographicalName/gn:spelling/gn:SpellingOfName/gn:script</targetAttribute>
                     <sourceExpression>
@@ -181,6 +188,9 @@
                         <OCQL>sitename</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
+
+                <!-- ProtectedSite -->
+
 
                 <AttributeMapping>
                     <targetAttribute>ps:siteProtectionClassification</targetAttribute>
@@ -210,11 +220,13 @@
                     </ClientProperty>
                     <ClientProperty>
                         <name>xlink:title</name>
-                        <value>designationscheme</value>
+                        <value>designationscheme_lbl</value>
                     </ClientProperty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(designationscheme), 'unknown', Expression.NIL)</value>
+                        <value>
+                            if_then_else(isNull(designationscheme_uri), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)
+                        </value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -229,11 +241,11 @@
                     </ClientProperty>
                     <ClientProperty>
                         <name>xlink:title</name>
-                        <value>designation</value>
+                        <value>designation_lbl</value>
                     </ClientProperty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(designation), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(designation_uri), 'Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -253,7 +265,6 @@
                         <OCQL>if_then_else(isNull(legalfoundationdocument_text), legalfoundationdocument_uri, legalfoundationdocument_text)</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
-
             </attributeMappings>
         </FeatureTypeMapping>
     </typeMappings>
