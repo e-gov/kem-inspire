@@ -70,7 +70,7 @@
                 <AttributeMapping>
                     <targetAttribute>ps:ProtectedSite</targetAttribute>
                     <idExpression>
-                        <OCQL>strConcat('ps.', id_localid)</OCQL>
+                        <OCQL>strConcat(strConcat(id_namespace, '/'), id_localid)</OCQL>
                     </idExpression>
                 </AttributeMapping>
 
