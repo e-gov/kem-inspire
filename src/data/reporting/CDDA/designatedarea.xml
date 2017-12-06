@@ -109,7 +109,7 @@
                 <AttributeMapping>
                     <targetAttribute>containedBy</targetAttribute>
                     <sourceExpression>
-                        <OCQL>dataset_id</OCQL>
+                        <OCQL>datasetid</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>

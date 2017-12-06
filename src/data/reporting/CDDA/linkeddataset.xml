@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<appschema:AppSchemaDataAccess xmlns:ns2="http://www.opengis.net/ogc"
+<appschema:AppSchemaDataAccess
+    xmlns:ns2="http://www.opengis.net/ogc"
     xmlns:appschema="http://www.geotools.org/app-schema">
     <namespaces>
         <Namespace>
@@ -41,7 +42,9 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>http://dd.eionet.europa.eu/namespaces/11/schema-dst-3344.xsd</schemaUri>
+            <schemaUri>
+                http://dd.eionet.europa.eu/namespaces/11/schema-dst-3344.xsd
+            </schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
