@@ -14,12 +14,8 @@
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designationScheme/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>nationalDesignationTypeCode</ogc:Literal>
-			  </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>EE06</ogc:Literal>
+                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:href</ogc:PropertyName>
+                <ogc:Literal>http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE06</ogc:Literal>
 			  </ogc:PropertyIsEqualTo>
               <ogc:PropertyIsEqualTo>
                 <ogc:Function name="dimension">
@@ -47,12 +43,8 @@
           <ogc:Filter>
             <ogc:And>
               <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designationScheme/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>nationalDesignationTypeCode</ogc:Literal>
-			  </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>EE06</ogc:Literal>
+                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:href</ogc:PropertyName>
+                <ogc:Literal>http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE06</ogc:Literal>
 			  </ogc:PropertyIsEqualTo>
               <ogc:PropertyIsEqualTo>
                 <ogc:Function name="dimension">
