@@ -34,26 +34,26 @@
   <schemaBaseURL>http://schemas.opengis.net</schemaBaseURL>
   <verbose>false</verbose>
   <metadata>
-    <entry key="inspire.language">eng</entry>
+    <entry key="inspire.language">est</entry>
     <entry key="inspire.metadataURLType">application/vnd.iso.19139+xml</entry>
     <entry key="SHAPE-ZIP_DEFAULT_PRJ_IS_ESRI">false</entry>
-    <entry key="inspire.spatialDatasetIdentifier">eelis.ala,http://envir.ee/eelis,;eelis.rahvala,http://envir.ee/eelis,</entry>
+    <entry key="inspire.spatialDatasetIdentifier">http://registry.envir.ee/datasets/eelis/ala,http://registry.envir.ee/datasets,http://inspire.maaamet.ee/geoportal/rest/document?id=%7BEC115F64-BDB4-48F1-AF78-0BB0749F0B79%7D;http://registry.envir.ee/datasets/eelis/rahvala,http://registry.envir.ee/datasets,http://inspire.maaamet.ee/geoportal/rest/document?id=%7BEC115F64-BDB4-48F1-AF78-0BB0749F0B79%7D</entry>
     <entry key="inspire.createExtendedCapabilities">true</entry>
     <entry key="inspire.metadataURL">http://inspire.maaamet.ee/geoportal/rest/document?id=</entry>
   </metadata>
   <gml>
     <entry>
-      <version>V_10</version>
-      <gml>
-        <srsNameStyle>XML</srsNameStyle>
-        <overrideGMLAttributes>true</overrideGMLAttributes>
-      </gml>
-    </entry>
-    <entry>
       <version>V_11</version>
       <gml>
         <srsNameStyle>URN</srsNameStyle>
         <overrideGMLAttributes>false</overrideGMLAttributes>
+      </gml>
+    </entry>
+    <entry>
+      <version>V_10</version>
+      <gml>
+        <srsNameStyle>XML</srsNameStyle>
+        <overrideGMLAttributes>true</overrideGMLAttributes>
       </gml>
     </entry>
     <entry>

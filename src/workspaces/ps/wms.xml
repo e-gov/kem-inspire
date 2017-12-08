@@ -42,7 +42,7 @@
     <entry key="pngCompression">25</entry>
     <entry key="jpegCompression">25</entry>
     <entry key="inspire.metadataURL">http://inspire.maaamet.ee/geoportal/rest/document?id=</entry>
-    <entry key="inspire.language">eng</entry>
+    <entry key="inspire.language">est</entry>
     <entry key="inspire.metadataURLType">application/vnd.iso.19139+xml</entry>
     <entry key="advancedProjectionHandling">true</entry>
     <entry key="maxAllowedFrames">2147483647</entry>
