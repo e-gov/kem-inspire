@@ -56,7 +56,9 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>http://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd</schemaUri>
+            <schemaUri>
+                http://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd
+            </schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
@@ -71,6 +73,9 @@
                         <OCQL>gml_id</OCQL>
                     </idExpression>
                 </AttributeMapping>
+
+                <!-- identification -->
+
                 <AttributeMapping>
                     <targetAttribute>ps:inspireID/base:Identifier/base:localId</targetAttribute>
                     <encodeIfEmpty>true</encodeIfEmpty>
@@ -108,6 +113,8 @@
                     </sourceExpression>
                     <enccodeIfEmpty>true</enccodeIfEmpty>
                 </AttributeMapping>
+
+                <!-- GeographicalName -->
 
                 <!-- ProtectedSite/siteName: if sitename IS NOT NULL encode
                 as a GeograohicalName. If NULL then xsi:nil=true and nilReason=Unknown -->
@@ -205,6 +212,8 @@
                         <OCQL>sitename</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
+
+                <!-- ProtectedSite -->
 
                 <AttributeMapping>
                     <targetAttribute>ps:siteProtectionClassification</targetAttribute>
