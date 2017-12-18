@@ -187,7 +187,7 @@ We are going to be mapping three elements `dd11:CDDA` (from the table
 (from `inspire__cdda_reporting_dataset`). The XML namespace notation is the
 same as the previous [samples](#xsd-files) are using.
 
-@TODO: should we also have DDL syntax for DB structures creation?
+Sample DDL SQL file is available [here](sample.sql).
 
 The `inspire__cdda_reporting` table should have as many rows
 as many `dd11:CDDA` elements are needed which should amount to 1. This is the
@@ -266,11 +266,11 @@ a HTTP response like (identiation added by hand for readability)
     xmlns:datasets="http://dd.eionet.europa.eu/namespaces/1"
     xmlns:dd11="http://dd.eionet.europa.eu/namespaces/11"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    numberMatched="unknown" numberReturned="1" timeStamp="2017-11-30T16:30:38.405Z"
+    numberMatched="unknown" numberReturned="1" timeStamp="2017-12-18T08:13:22.528Z"
     xsi:schemaLocation="http://www.opengis.net/wfs/2.0
     http://localhost:8080/geoserver/schemas/wfs/2.0/wfs.xsd
     http://dd.eionet.europa.eu/namespaces/11
-    https://dd.eionet.europa.eu/namespaces/11/schema-dst-3344.xsd
+    http://dd.eionet.europa.eu/namespaces/11/schema-dst-3344.xsd
     http://www.opengis.net/gml/3.2 http://localhost:8080/geoserver/schemas/gml/3.2.1/gml.xsd">
     <wfs:member>
         <dd11:CDDA gml:id="1">
@@ -279,7 +279,7 @@ a HTTP response like (identiation added by hand for readability)
                     <dd873:cddaId>180617</dd873:cddaId>
                     <dd873:nationalId>1731</dd873:nationalId>
                     <dd873:PSlocalId>1731</dd873:PSlocalId>
-                    <dd873:PSnamespace>ee-eelis-ala</dd873:PSnamespace>
+                    <dd873:PSnamespace>http://registry.envir.ee/datasets/eelis/ala</dd873:PSnamespace>
                     <dd873:PSversionId>20140213090427</dd873:PSversionId>
                     <dd873:designatedAreaType>designatedSite</dd873:designatedAreaType>
                     <dd873:cddaCountryCode>EE</dd873:cddaCountryCode>
@@ -287,13 +287,13 @@ a HTTP response like (identiation added by hand for readability)
                     <dd873:designationTypeCode>EE13</dd873:designationTypeCode>
                     <dd873:iucnCategory>V</dd873:iucnCategory>
                     <dd873:siteArea>8.8</dd873:siteArea>
-                    <dd873:majorEcosystemType>T</dd873:majorEcosystemType>
-                    <dd873:spatialDataDissemination>01</dd873:spatialDataDissemination>
-                    <dd873:spatialResolutionCode>5</dd873:spatialResolutionCode>
-                    <dd873:eionetChangeDate>2017-11-09T17:40:54.065Z</dd873:eionetChangeDate>
+                    <dd873:majorEcosystemType>marineAndTerrestrial</dd873:majorEcosystemType>
+                    <dd873:spatialDataDissemination>public</dd873:spatialDataDissemination>
+                    <dd873:spatialResolutionCode>scaleLarger100K</dd873:spatialResolutionCode>
+                    <dd873:eionetChangeDate>2017-12-13 12:57:42Z</dd873:eionetChangeDate>
                     <dd873:eionetChangeType>U</dd873:eionetChangeType>
-                    <dd873:eionetEditedBy>KTK EELIS admin </dd873:eionetEditedBy>
-                    <dd873:eionetInstitute>EtEA</dd873:eionetInstitute>
+                    <dd873:eionetEditedBy>editor-name</dd873:eionetEditedBy>
+                    <dd873:eionetInstitute>eionet-institute-name</dd873:eionetInstitute>
                     <dd873:siteEnded>0</dd873:siteEnded>
                     <dd873:containedBy>999</dd873:containedBy>
                 </dd873:Row>
@@ -301,7 +301,7 @@ a HTTP response like (identiation added by hand for readability)
                     <dd873:cddaId>171902</dd873:cddaId>
                     <dd873:nationalId>111</dd873:nationalId>
                     <dd873:PSlocalId>111</dd873:PSlocalId>
-                    <dd873:PSnamespace>ee-eelis-ala</dd873:PSnamespace>
+                    <dd873:PSnamespace>http://registry.envir.ee/datasets/eelis/ala</dd873:PSnamespace>
                     <dd873:PSversionId>20140313143829</dd873:PSversionId>
                     <dd873:designatedAreaType>designatedSite</dd873:designatedAreaType>
                     <dd873:cddaCountryCode>EE</dd873:cddaCountryCode>
@@ -309,19 +309,38 @@ a HTTP response like (identiation added by hand for readability)
                     <dd873:designationTypeCode>EE18</dd873:designationTypeCode>
                     <dd873:iucnCategory>III</dd873:iucnCategory>
                     <dd873:siteArea>0.0</dd873:siteArea>
-                    <dd873:majorEcosystemType>T</dd873:majorEcosystemType>
-                    <dd873:spatialDataDissemination>01</dd873:spatialDataDissemination>
-                    <dd873:spatialResolutionCode>5</dd873:spatialResolutionCode>
-                    <dd873:eionetChangeDate>2017-11-09T17:40:54.065Z</dd873:eionetChangeDate>
+                    <dd873:majorEcosystemType>terrestrial</dd873:majorEcosystemType>
+                    <dd873:spatialDataDissemination>public</dd873:spatialDataDissemination>
+                    <dd873:spatialResolutionCode>scaleLarger100K</dd873:spatialResolutionCode>
+                    <dd873:eionetChangeDate>2017-12-13 12:57:42Z</dd873:eionetChangeDate>
                     <dd873:eionetChangeType>U</dd873:eionetChangeType>
-                    <dd873:eionetEditedBy>KTK EELIS admin </dd873:eionetEditedBy>
-                    <dd873:eionetInstitute>EtEA</dd873:eionetInstitute>
+                    <dd873:eionetEditedBy>editor-name</dd873:eionetEditedBy>
+                    <dd873:eionetInstitute>eionet-institute-name</dd873:eionetInstitute>
                     <dd873:siteEnded>0</dd873:siteEnded>
                     <dd873:containedBy>999</dd873:containedBy>
                 </dd873:Row>
                 <dd873:Row>
-                    ... [output truncated for brevity] ...
-                </dd873:Row>
+                    <dd873:cddaId>392351</dd873:cddaId>
+                    <dd873:nationalId>1974541864</dd873:nationalId>
+                    <dd873:PSlocalId>1974541864</dd873:PSlocalId>
+                    <dd873:PSnamespace>http://registry.envir.ee/datasets/eelis/ala</dd873:PSnamespace>
+                    <dd873:PSversionId>20140306105812</dd873:PSversionId>
+                    <dd873:designatedAreaType>designatedSite</dd873:designatedAreaType>
+                    <dd873:cddaCountryCode>EE</dd873:cddaCountryCode>
+                    <dd873:cddaRegionCode>EE</dd873:cddaRegionCode>
+                    <dd873:designationTypeCode>EE03</dd873:designationTypeCode>
+                    <dd873:iucnCategory>IV</dd873:iucnCategory>
+                    <dd873:siteArea>29.5</dd873:siteArea>
+                    <dd873:majorEcosystemType>marineAndTerrestrial</dd873:majorEcosystemType>
+                    <dd873:spatialDataDissemination>public</dd873:spatialDataDissemination>
+                    <dd873:spatialResolutionCode>scaleLarger100K</dd873:spatialResolutionCode>
+                    <dd873:eionetChangeDate>2017-12-13 12:57:42Z</dd873:eionetChangeDate>
+                    <dd873:eionetChangeType>U</dd873:eionetChangeType>
+                    <dd873:eionetEditedBy>editor-name</dd873:eionetEditedBy>
+                    <dd873:eionetInstitute>eionet-institute-name</dd873:eionetInstitute>
+                    <dd873:siteEnded>0</dd873:siteEnded>
+                    <dd873:containedBy>1000</dd873:containedBy>
+                </dd873:Row>            
             </dd873:DesignatedArea>
             <dd874:LinkedDataset>
                 <dd874:Row>
@@ -336,7 +355,7 @@ a HTTP response like (identiation added by hand for readability)
                     <dd874:gmlFileName>mm.gml</dd874:gmlFileName>
                     <dd874:wfsEndpoint>http://n.io/ows?</dd874:wfsEndpoint>
                     <dd874:wfsVersion>2.0.0</dd874:wfsVersion>
-                    <dd874:wfsStoredQuery>http://n.io/ops/getsecretdataset</dd874:wfsStoredQuery>
+                    <dd874:wfsStoredQuery>http://n.io/ops/getsomethingelse</dd874:wfsStoredQuery>
                 </dd874:Row>
             </dd874:LinkedDataset>
         </dd11:CDDA>
@@ -344,9 +363,7 @@ a HTTP response like (identiation added by hand for readability)
 </wfs:FeatureCollection>
 ```
 
-NB! This request is based on a test dataset and does not yet have the right
-encoding as regards to the various enumerations used. Similarly the
-LinkedDataset elements contain gibberish.
+This request is based on a sample dataset available from [here](sample.sql)
 
 
 ## Packaging of Type1 and Type2

@@ -54,7 +54,7 @@
     <targetTypes>
         <FeatureType>
             <schemaUri>
-                https://dd.eionet.europa.eu/namespaces/11/schema-dst-3344.xsd
+                http://dd.eionet.europa.eu/namespaces/11/schema-dst-3344.xsd
             </schemaUri>
         </FeatureType>
     </targetTypes>
