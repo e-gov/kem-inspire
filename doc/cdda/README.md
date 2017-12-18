@@ -80,9 +80,83 @@ XSD files will produce a XML document with the following structure:
 As an example output, let's consider:
 
 ```
-@TODO: a placeholder for the expected Type2 xml output file contents.
+<?xml version="1.0" encoding="UTF-8"?>
+<CDDA
+    xmlns="http://dd.eionet.europa.eu/namespaces/11"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://dd.eionet.europa.eu/namespaces/11  http://dd.eionet.europa.eu/v2/dataset/3344/schema-dst-3344.xsd">
+    <DesignatedArea xmlns="http://dd.eionet.europa.eu/namespaces/873">
+        <Row>
+            <cddaId/>
+            <nationalId/>
+            <PSlocalId/>
+            <PSnamespace/>
+            <PSversionId/>
+            <designatedAreaType/>
+            <cddaCountryCode/>
+            <cddaRegionCode/>
+            <designationTypeCode/>
+            <iucnCategory/>
+            <siteArea/>
+            <majorEcosystemType/>
+            <marineAreaPercentage/>
+            <spatialDataDissemination/>
+            <spatialResolutionCode/>
+            <eionetChangeDate/>
+            <eionetChangeType/>
+            <eionetEditedBy/>
+            <eionetInstitute/>
+            <remark/>
+            <siteEnded/>
+            <containedBy/>
+        </Row>
+		<Row>
+            <cddaId/>
+            <nationalId/>
+            <PSlocalId/>
+            <PSnamespace/>
+            <PSversionId/>
+            <designatedAreaType/>
+            <cddaCountryCode/>
+            <cddaRegionCode/>
+            <designationTypeCode/>
+            <iucnCategory/>
+            <siteArea/>
+            <majorEcosystemType/>
+            <marineAreaPercentage/>
+            <spatialDataDissemination/>
+            <spatialResolutionCode/>
+            <eionetChangeDate/>
+            <eionetChangeType/>
+            <eionetEditedBy/>
+            <eionetInstitute/>
+            <remark/>
+            <siteEnded/>
+            <containedBy/>
+        </Row>
+    </DesignatedArea>
+    <LinkedDataset xmlns="http://dd.eionet.europa.eu/namespaces/874">
+        <Row>
+            <datasetId/>
+            <gmlFileName/>
+            <wfsEndpoint/>
+            <wfsVersion/>
+            <wfsStoredQuery/>
+        </Row>
+        <Row>
+            <datasetId/>
+            <gmlFileName/>
+            <wfsEndpoint/>
+            <wfsVersion/>
+            <wfsStoredQuery/>
+        </Row>		
+    </LinkedDataset>
+</CDDA>
 ```
-> Example Type2 dataset encoding provided by the EEA.
+> Example Type2 dataset structure provided by the EEA.
+
+The latter example has two (empty) instances (rows) for both: DesignatedArea
+and LinkedDataset.
 
 In order for the xsd files to be used with GeoServer app-schema a slight
 adjustment is needed in both the DesignatedArea and LinkedDataset schema files:
@@ -126,7 +200,7 @@ the LinkedDataset and DesignatedArea elements could be thought of as DB
 tables, each with a 0 to "unbounded" number of rows.
 
 The `inspire__cdda_reporting_dataset` holds the data for the
-`dd874:LinkedDataset` elemen. It's relation to `inspire__cdda_reporting` is
+`dd874:LinkedDataset` element. It's relation to `inspire__cdda_reporting` is
 defined through
 
 ```
