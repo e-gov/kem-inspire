@@ -72,19 +72,24 @@
                 <AttributeMapping>
                     <targetAttribute>hy-p:DamOrWeir</targetAttribute>
                     <idExpression>
-                        <OCQL>strConcat('hyp.', id_localid)</OCQL>
+                        <OCQL>gml_id</OCQL>
                     </idExpression>
                 </AttributeMapping>
+
+                <!-- identification -->
+
                 <AttributeMapping>
                     <targetAttribute>hy-p:inspireId/base:Identifier/base:localId</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
                     <sourceExpression>
                         <OCQL>id_localid</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>hy-p:inspireId/base:Identifier/base:namespace</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
                     <sourceExpression>
-                        <OCQL>'http://envir.ee/Inspire/EELIS/pais'</OCQL>
+                        <OCQL>id_namespace</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -94,10 +99,17 @@
                     </sourceExpression>
                     <encodeIfEmpty>true</encodeIfEmpty>
                     <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(id_versionid), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(id_versionid), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(id_versionid), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
+
+                <!-- lifespaninfo  -->
+
                 <AttributeMapping>
                     <targetAttribute>hy-p:beginLifespanVersion</targetAttribute>
                     <sourceExpression>
@@ -105,17 +117,32 @@
                     </sourceExpression>
                     <encodeIfEmpty>true</encodeIfEmpty>
                     <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(beginlifespanversion), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(beginlifespanversion), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(beginlifespanversion), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>hy-p:endLifespanVersion</targetAttribute>
                     <sourceExpression>
-                        <OCQL>Expression.NIL</OCQL>
+                        <OCQL>endlifespanversion</OCQL>
                     </sourceExpression>
                     <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(endlifespanversion), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>endlifespanversion_void</value>
+                    </ClientProperty>
                 </AttributeMapping>
+
+                <!-- condition  -->
+
                 <AttributeMapping>
                     <targetAttribute>hy-p:condition</targetAttribute>
                     <sourceExpression>
@@ -128,11 +155,15 @@
                     </ClientProperty>
                     <ClientProperty>
                         <name>xlink:title</name>
-                        <value>condition</value>
+                        <value>condition_lbl</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(condition_uri), 'true', Expression.NIL)</value>
                     </ClientProperty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(condition), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(condition_uri), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -142,39 +173,47 @@
                     </sourceExpression>
                     <encodeIfEmpty>true</encodeIfEmpty>
                     <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(lod), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(lod), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(lod), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
 
-                <!--AttributeMapping>
-                    <targetAttribute>hy-p:geometry/gml:AbstractGeometricPrimitive</targetAttribute>
-                    <sourceExpression>
-                        <OCQL>shape</OCQL>
-                    </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
-                    <targetAttributeNode>gml:PointType</targetAttributeNode>
-                    <ClientProperty>
-                        <name>nilReason</name>
-                        <value>if_then_else(isNull(shape), 'unknown', Expression.NIL)</value>
-                    </ClientProperty>
-                </AttributeMapping-->
                 <AttributeMapping>
                     <targetAttribute>hy-p:geometry</targetAttribute>
                     <sourceExpression>
                         <OCQL>shape</OCQL>
                     </sourceExpression>
                     <encodeIfEmpty>true</encodeIfEmpty>
-                    <ClientProperty>
-                        <name>nilReason</name>
-                        <value>if_then_else(isNull(shape), 'unknown', Expression.NIL)</value>
-                    </ClientProperty>
                 </AttributeMapping>
 
+
+
+                <!-- DamOrWeir/geographicalName: if geographicalName IS NOT NULL encode
+                as a GeograohicalName. If NULL then xsi:nil=true and nilReason=Unknown -->
+                <AttributeMapping>
+                    <targetAttribute>hy-p:geographicalName</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>Expression.NIL</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(geoname), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(geoname), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>hy-p:geographicalName/gn:GeographicalName/gn:language</targetAttribute>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <sourceExpression>
-                        <OCQL>'est'</OCQL>
+                        <OCQL>if_then_else(isNull(geoname), Expression.NIL, 'est')</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -182,10 +221,14 @@
                     <sourceExpression>
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>if_then_else(isNull(geoname), Expression.NIL, 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(geoname), Expression.NIL, 'true')</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -193,10 +236,14 @@
                     <sourceExpression>
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>if_then_else(isNull(geoname), Expression.NIL, 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(geoname), Expression.NIL, 'true')</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -204,10 +251,14 @@
                     <sourceExpression>
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>if_then_else(isNull(geoname), Expression.NIL, 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(geoname), Expression.NIL, 'true')</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -215,16 +266,20 @@
                     <sourceExpression>
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>if_then_else(isNull(geoname), Expression.NIL, 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(geoname), Expression.NIL, 'true')</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>hy-p:geographicalName/gn:GeographicalName/gn:spelling/gn:SpellingOfName/gn:script</targetAttribute>
                     <sourceExpression>
-                        <OCQL>'Latn'</OCQL>
+                        <OCQL>if_then_else(isNull(geoname), Expression.NIL, 'Latn')</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -234,15 +289,35 @@
                     </sourceExpression>
                 </AttributeMapping>
 
+
+                <AttributeMapping>
+                    <targetAttribute>hy-p:hydroId</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>Expression.NIL</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(hydro_id), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(hydro_id), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>hy-p:hydroId/hy:HydroIdentifier/hy:classificationScheme</targetAttribute>
                     <sourceExpression>
                         <OCQL>hydro_id_classificationscheme</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(hydro_id_classificationscheme), Expression.NIL, 'true')</value>
+                    </ClientProperty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(hydro_id_classificationscheme), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(hydro_id_classificationscheme), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -250,10 +325,10 @@
                     <sourceExpression>
                         <OCQL>hydro_id</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(hydro_id), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(hydro_id), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -261,10 +336,10 @@
                     <sourceExpression>
                         <OCQL>hydro_id_namespace</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(hydro_id_namespace), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(hydro_id_namespace), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
 
