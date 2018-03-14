@@ -229,6 +229,10 @@ that's reported upon and each row here maps to `dd873:Row`.
 
 
 ## Sample queries and output
+### Type1 data
+
+
+### Type 2 data
 As stated before the main idea of this work is to make use of a known API for
 querying CDDA Type2 data and the OGC WebFeatureService (WFS) is one possibility
 here. So using the `GetFeature` request we can do
@@ -367,7 +371,164 @@ This request is based on a sample dataset available from [here](sample.sql)
 
 
 ## Packaging of Type1 and Type2
-@TODO
+We'll need to take some extra steps in order to make the GeoServer based WFS
+response schema-compliant for CDDA reporting. Namely:
+1. we'll need to take the `{http://dd.eionet.europa.eu/namespaces/11}CDDA`
+element out of `{http://www.opengis.net/wfs/2.0}FeatureCollection/{http://www.opengis.net/wfs/2.0}member`
+and make it the root element of our type2 xml
+2. process the `{http://dd.eionet.europa.eu/namespaces/11}ProtectedSite` WFS
+elements and
+    - remove the `{http://dd.eionet.europa.eu/namespaces/11}ProtectedSite/{http://dd.eionet.europa.eu/namespaces/11}datasetId`
+element;
+    - redefine the target namespace for ProtectedSite to point to the official
+http://inspire.ec.europa.eu/schemas/ps/4.0
+    - rename `{http://www.opengis.net/wfs/2.0}FeatureCollection/{http://www.opengis.net/wfs/2.0}member`
+elements to `{http://www.opengis.net/gml/3.2}FeatureCollection/{http://www.opengis.net/gml/3.2}featureMember`
+elements.
+
+The necessary script for doing it in Python in one go is available at
+[doc/script/download.py](..) but we'll go the whole process over
+[here](#fixing-type1-data-and-saving-a-gml) and [here](#fixing-type2-data-and-saving-a-xml)
+aswell
+
+The script will firstly download the dd11:CDDA xml and then do separate
+requests to the url specified in
+`dd11:CDDA/dd874:LinkedDataset/dd874:Row/dd874:wfsEndpoint` with the
+`cql_query` parameter set at `datasetid=n` where *n* is the
+`dd11:CDDA/dd874:LinkedDataset/dd874:Row/dd874:datasetId` specified for that instance.
+
+### Fixing Type1 data and saving a GML
+
+We'll use Python: the `requests` library for retrieving data and `lxml` for
+manipulating xml content.
+
+```
+import requests
+from lxml import etree
+
+# download data from
+
+url = 'http://localhost:8080/geoserver/dd11/ows?
+params = dict(
+    service='WFS',
+    version='2.0.0',
+    request='GetFeature',
+    typeName='dd11:ProtectedSite'    
+)
+r = requests.get(url, params=params)
+r.raise_for_status()
+type1data = r.content
+
+# ... FIX TARGETNAMESPACE TO INSPIRE PS OFFICIAL ...
+
+type1data = type1data.replace(
+    'http://dd.eionet.europa.eu/namespaces/11',
+    'http://inspire.ec.europa.eu/schemas/ps/4.0')
+
+# ... and create a XML object
+
+ps = etree.fromstring(type1data)
+
+# these are the namespaces we're going to use.
+# and we're switching dd11 to point to ps official
+
+xsi = ps.nsmap['xsi']
+schemaLocation = "http://inspire.ec.europa.eu/schemas/ps/4.0 http://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd"
+gml = ps.nsmap['gml']
+dd11 = ps.nsmap['ps']
+base = ps.nsmap['base']
+gmd = ps.nsmap['gmd']
+gco = ps.nsmap['gco']
+xlink = ps.nsmap['xlink']
+gn = ps.nsmap['gn']
+
+
+# remove some xml root attributes not applicable for GML
+
+ps.attrib["{%s}schemaLocation" % xsi] = schemaLocation
+for att in ['numberReturned', 'timeStamp', 'numberMatched']:
+    if ps.attrib.get(att):
+        del ps.attrib[att]
+
+# switch tag names
+
+ps.tag = "{%s}FeatureCollection" % gml
+for member in ps.xpath('wfs:member', namespaces=ps.nsmap):
+    member.tag = "{%s}featureMember" % gml
+
+# Remove dd11:ProtectedSite/dd11:datasetId elements
+
+for datasetid in ps.xpath('gml:featureMember/dd11:ProtectedSite/dd11:datasetId',
+    namespaces=ps.nsmap):
+    datasetid.getparent().remove(datasetid)
+
+# aaaand create a clean GML file without unnecessary namespace declarations:
+
+namespaces = dict(
+    gml=gml,
+    ps=dd11,
+    base=base,
+    gmd=gmd,
+    gco=gco,
+    xlink=xlink,
+    gn=gn
+)
+
+cleaned = etree.Element(ps.tag, ps.attrib, nsmap=namespaces)
+cleaned[:] = el[:]
+
+# To finish off, save the file.
+# NB! keep in mind that the filename should actually be the same
+# as reported for CDDA/LinkedDataset/gmlFileName
+# remember the xml_declaration=True or CDR will not recognize the GML for upload.
+
+filepath = 'cdda-type1.gml'
+with open (filepath, 'w') as f:
+    f.write(etree.tostring(
+        cleaned,
+        encoding='UTF-8',
+        xml_declaration=True,
+        pretty_print=True))
+```
+
+### Fixing Type2 data and saving a XML
+
+And without any further ado:
+
+```
+url = 'http://localhost:8080/geoserver/dd11/ows?
+params = dict(
+    service='WFS',
+    version='2.0.0',
+    request='GetFeature',
+    typeName='dd11:CDDA'    
+)
+r = requests.get(url, params=params)
+r.raise_for_status()
+cdda = etree.fromstring(r.content)
+
+# remove redundant namespaces
+
+cleaned = etree.Element(cdda.tag, cdda.attrib)
+cleaned[:] = el[:]
+
+#  get the CDDA element
+
+type2data = cleaned.find('wfs:member/dd11:CDDA', namespaces=cdda.nsmap)
+
+# Fix xsi:schemaLocation to xml declaration as
+
+xsi = "http://www.w3.org/2001/XMLSchema-instance"
+schemaLocation="http://dd.eionet.europa.eu/namespaces/11  http://dd.eionet.europa.eu/v2/dataset/3344/schema-dst-3344.xsd"
+type2data.attrib["{%s}schemaLocation" % xsi] = schemaLocation
+
+## save type2 file
+filepath = 'cdda-type2.xml')
+# Save the type2 XML file
+with open (filepath, 'w') as f:
+    f.write(etree.tostring(type2data, encoding='UTF-8', pretty_print=True))
+
+```
 
 
 ## Setup for reporting
