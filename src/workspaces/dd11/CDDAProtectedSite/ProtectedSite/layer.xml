@@ -1,0 +1,15 @@
+<layer>
+  <name>ProtectedSite</name>
+  <id>LayerInfoImpl-12df8ad0:16205fd5e9c:-7ffd</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fdf</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-12df8ad0:16205fd5e9c:-7ffe</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

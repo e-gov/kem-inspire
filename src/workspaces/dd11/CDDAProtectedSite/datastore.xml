@@ -1,0 +1,15 @@
+<dataStore>
+  <id>DataStoreInfoImpl-12df8ad0:16205fd5e9c:-8000</id>
+  <name>CDDAProtectedSite</name>
+  <type>Application Schema DataAccess</type>
+  <enabled>true</enabled>
+  <workspace>
+    <id>WorkspaceInfoImpl-1e1c91f2:1600408f791:-7ffe</id>
+  </workspace>
+  <connectionParameters>
+    <entry key="dbtype">app-schema</entry>
+    <entry key="namespace">http://dd.eionet.europa.eu/namespaces/11</entry>
+    <entry key="url">file:data/reporting/ProtectedSite/ProtectedSite.appschema</entry>
+  </connectionParameters>
+  <__default>false</__default>
+</dataStore>
