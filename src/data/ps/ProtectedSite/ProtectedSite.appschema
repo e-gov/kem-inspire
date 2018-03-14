@@ -112,12 +112,16 @@
                         <OCQL>shape</OCQL>
                     </sourceExpression>
                     <enccodeIfEmpty>true</enccodeIfEmpty>
+                    <idExpression>
+                        <OCQL>strConcat(gml_id, '/geometry')</OCQL>
+                    </idExpression>
                 </AttributeMapping>
 
                 <!-- GeographicalName -->
 
                 <!-- ProtectedSite/siteName: if sitename IS NOT NULL encode
-                as a GeograohicalName. If NULL then xsi:nil=true and nilReason=Unknown -->
+                    as a GeograohicalName. If NULL then xsi:nil=true and nilReason=Unknown -->
+
                 <AttributeMapping>
                     <targetAttribute>ps:siteName</targetAttribute>
                     <encodeIfEmpty>true</encodeIfEmpty>
@@ -265,7 +269,7 @@
                     </ClientProperty>
                     <ClientProperty>
                         <!-- ProtectedSite/designation IS NOT nillable! so
-                        if this happens, then this is an error. -->
+                              if this happens, then this is an error. -->
                         <name>nilReason</name>
                         <value>if_then_else(isNull(designationscheme_uri), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
@@ -290,11 +294,29 @@
                     </ClientProperty>
                     <ClientProperty>
                         <!-- ProtectedSite/designation IS NOT nillable! so
-                        if this happens, then this is an error. -->
+                              if this happens, then this is an error. -->
                         <name>nilReason</name>
                         <value>if_then_else(isNull(designation_uri), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ps:siteDesignation/ps:DesignationType/ps:percentageUnderDesignation</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>if_then_else(isNull(designation_uri), Expression.NIL, '100')</OCQL>
+                    </sourceExpression>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(designation_uri), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(designation_uri), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
+
+                <!-- legalFoundation -->
+
                 <AttributeMapping>
                     <targetAttribute>ps:legalFoundationDocument</targetAttribute>
                     <sourceExpression>
@@ -315,6 +337,18 @@
                     <sourceExpression>
                         <OCQL>if_then_else(isNull(legalfoundationdocument_text), legalfoundationdocument_uri, legalfoundationdocument_text)</OCQL>
                     </sourceExpression>
+                </AttributeMapping>
+                <!-- is this correct?? -->
+                <AttributeMapping>
+                    <targetAttribute>ps:legalFoundationDocument/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>Expression.NIL</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>gco:nilReason</name>
+                        <value>'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated'</value>
+                    </ClientProperty>
                 </AttributeMapping>
             </attributeMappings>
         </FeatureTypeMapping>

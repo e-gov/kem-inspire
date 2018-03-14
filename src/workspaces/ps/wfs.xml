@@ -59,7 +59,7 @@
     <entry>
       <version>V_20</version>
       <gml>
-        <srsNameStyle>URN2</srsNameStyle>
+        <srsNameStyle>URL</srsNameStyle>
         <overrideGMLAttributes>false</overrideGMLAttributes>
         <mimeTypeToForce>text/xml</mimeTypeToForce>
       </gml>
@@ -68,8 +68,8 @@
   <serviceLevel>BASIC</serviceLevel>
   <maxFeatures>1000000</maxFeatures>
   <featureBounding>true</featureBounding>
-  <canonicalSchemaLocation>false</canonicalSchemaLocation>
-  <encodeFeatureMember>false</encodeFeatureMember>
+  <canonicalSchemaLocation>true</canonicalSchemaLocation>
+  <encodeFeatureMember>true</encodeFeatureMember>
   <hitsIgnoreMaxFeatures>false</hitsIgnoreMaxFeatures>
   <srs>
     <string>3301</string>
