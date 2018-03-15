@@ -246,7 +246,8 @@ so we could in the end use a process of
 Because this extension of ps:ProtectedSite is required for CDDA reporting, we'll
 place it in the `dd11` namespace. The extended app-schema is available at
 [app-schema-cache/eu/europa/eionet/dd/namespaces/11/ProtectedSites.xsd](
-..). A sample `GetFeature` query
+../../src/app-schema-cache/eu/europa/eionet/dd/namespaces/11/ProtectedSites.xsd).
+A sample `GetFeature` query
 
 ```
 $ http "http://localhost:8080/geoserver/dd11/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dd11:ProtectedSite"
@@ -621,9 +622,9 @@ elements to `{http://www.opengis.net/gml/3.2}FeatureCollection/{http://www.openg
 elements.
 
 The necessary script for doing it in Python in one go is available at
-[doc/script/download.py](..) but we'll go the whole process over
-[here](#fixing-type1-data-and-saving-a-gml) and [here](#fixing-type2-data-and-saving-a-xml)
-aswell
+[src/scripts/cddadownload.py](../../src/scripts/cddadownload.py) but we'll go
+the whole process over [here](#fixing-type1-data-and-saving-a-gml) and
+[here](#fixing-type2-data-and-saving-a-xml) aswell.
 
 The script will firstly download the dd11:CDDA xml and then do separate
 requests to the url specified in
