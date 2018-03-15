@@ -229,7 +229,243 @@ that's reported upon and each row here maps to `dd873:Row`.
 
 
 ## Sample queries and output
+Sample queries are based on a sample dataset available from [here](sample.sql)
+
 ### Type1 data
+Because the CDDA Type1 dataset is two-fold: supersecret protected sites'
+locations and public locations we'll use an extended ps:ProtectedSite schema.
+The extension is that we'll add a `datasetId` property to the `ProtectedSite`
+featuretype. This property will be the same as for CDDA/LinkedDataset/datasetId
+so we could in the end use a process of
+1. download the CDDA Type2 dataset
+2. loop through CDDA/LinkedDataset elements
+3. download those LinkedDataset datasets.
+
+Because this extension of ps:ProtectedSite is required for CDDA reporting, we'll
+place it in the `dd11` namespace. The extended app-schema is available at
+[app-schema-cache/eu/europa/eionet/dd/namespaces/11/ProtectedSites.xsd](
+..). A sample `GetFeature` query
+
+```
+$ http "http://localhost:8080/geoserver/dd11/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dd11:ProtectedSite"
+```
+
+will yield a response (identiation added by hand for readability, coordinates
+truncated).
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<wfs:FeatureCollection
+    xmlns:wfs="http://www.opengis.net/wfs/2.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:isoattrs="http://dd.eionet.europa.eu/namespaces/2"
+    xmlns:ddattrs="http://dd.eionet.europa.eu/namespaces/3"
+    xmlns:hfp="http://www.w3.org/2001/XMLSchema-hasFacetAndProperty"
+    xmlns:gml="http://www.opengis.net/gml/3.2"
+    xmlns:dd874="http://dd.eionet.europa.eu/namespaces/874"
+    xmlns:dd873="http://dd.eionet.europa.eu/namespaces/873"
+    xmlns:datasets="http://dd.eionet.europa.eu/namespaces/1"
+    xmlns:dd11="http://dd.eionet.europa.eu/namespaces/11"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    numberMatched="unknown" numberReturned="3" timeStamp="2018-03-15T07:58:49.138Z"
+    xsi:schemaLocation="http://www.opengis.net/wfs/2.0
+        http://schemas.opengis.net/wfs/2.0/wfs.xsd
+        http://dd.eionet.europa.eu/namespaces/11
+        http://dd.eionet.europa.eu/namespaces/11/ProtectedSites.xsd
+        http://www.opengis.net/gml/3.2
+        http://schemas.opengis.net/gml/3.2.1/gml.xsd">
+  <wfs:member>
+    <dd11:ProtectedSite gml:id="http://registry.envir.ee/datasets/eelis/ala/1731/20140213090427">
+      <gml:boundedBy>
+        <gml:Envelope srsDimension="2" srsName="urn:ogc:def:crs:EPSG::4258">
+          <gml:lowerCorner>59.34956340219641 26.347750816668285</gml:lowerCorner>
+          <gml:upperCorner>59.35356038020356 26.35272371832018</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <dd11:datasetId>999</dd11:datasetId>
+      <dd11:geometry>
+        <gml:Polygon gml:id="http://registry.envir.ee/datasets/eelis/ala/1731/20140213090427/geometry" srsDimension="2" srsName="urn:ogc:def:crs:EPSG::4258">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>59.353061271964386 26.347750816668285 59.35313329430295 [...] 26.34776313259779 59.353061271964386 26.347750816668285</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </dd11:geometry>
+      <dd11:inspireID>
+        <base:Identifier>
+          <base:localId>1731</base:localId>
+          <base:namespace>http://registry.envir.ee/datasets/eelis/ala</base:namespace>
+          <base:versionId>20140213090427</base:versionId>
+        </base:Identifier>
+      </dd11:inspireID>
+      <dd11:legalFoundationDate>1971-04-21T00:00:00Z</dd11:legalFoundationDate>
+      <dd11:legalFoundationDocument>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>Rakvere raj. RSN TK otsus nr.100&#13;
+Kohaliku tähtsusega looduskaitse alla kuuluvate parkide ja botaaniliste üksikobjektide nimekirjade muutmise kohta.&#13;
+</gco:CharacterString>
+          </gmd:title>
+        </gmd:CI_Citation>
+      </dd11:legalFoundationDocument>
+      <dd11:siteDesignation>
+        <dd11:DesignationType>
+          <dd11:designationScheme xlink:href="http://dd.eionet.europa.eu/vocabulary/inspire/DesignationSchemeValue/nationalDesignationTypeCode" xlink:title="National CDDA designations"/>
+          <dd11:designation xlink:href="http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE13" xlink:title="Limited management zone of protected landscape"/>
+          <dd11:percentageUnderDesignation>100</dd11:percentageUnderDesignation>
+        </dd11:DesignationType>
+      </dd11:siteDesignation>
+      <dd11:siteName>
+        <gn:GeographicalName>
+          <gn:language>est</gn:language>
+          <gn:nativeness xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:nameStatus xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:sourceOfName xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:pronunciation xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:spelling>
+            <gn:SpellingOfName>
+              <gn:text>Rakvere Rahvapark ehk Rakvere mõisa park</gn:text>
+              <gn:script>Latn</gn:script>
+            </gn:SpellingOfName>
+          </gn:spelling>
+        </gn:GeographicalName>
+      </dd11:siteName>
+      <dd11:siteProtectionClassification>natureConservation</dd11:siteProtectionClassification>
+    </dd11:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <dd11:ProtectedSite gml:id="http://registry.envir.ee/datasets/eelis/ala/111/20140313143829">
+      <gml:boundedBy>
+        <gml:Envelope srsDimension="2" srsName="urn:ogc:def:crs:EPSG::4258">
+          <gml:lowerCorner>59.12179156072728 25.190648496538845</gml:lowerCorner>
+          <gml:upperCorner>59.12194213527627 25.190800628284503</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <dd11:datasetId>999</dd11:datasetId>
+      <dd11:geometry>
+        <gml:MultiSurface gml:id="http://registry.envir.ee/datasets/eelis/ala/111/20140313143829/geometry" srsDimension="2" srsName="urn:ogc:def:crs:EPSG::4258">
+          <gml:surfaceMember>
+            <gml:Polygon gml:id="http://registry.envir.ee/datasets/eelis/ala/111/20140313143829/geometry.1" srsDimension="2">
+              <gml:exterior>
+                <gml:LinearRing>
+                  <gml:posList>59.12180031546256 25.190683322728756 59.121795885352164 [...] 25.190674962413773 59.12180479831618 25.19068058725165 59.12180031546256 25.190683322728756</gml:posList>
+                </gml:LinearRing>
+              </gml:exterior>
+            </gml:Polygon>
+          </gml:surfaceMember>
+          <gml:surfaceMember>
+            <gml:Polygon gml:id="http://registry.envir.ee/datasets/eelis/ala/111/20140313143829/geometry.2" srsDimension="2">
+              <gml:exterior>
+                <gml:LinearRing>
+                  <gml:posList>59.12193298493119 25.190800628284503 59.1219285548237 [...] 25.190797892812117 59.12193298493119 25.190800628284503</gml:posList>
+                </gml:LinearRing>
+              </gml:exterior>
+            </gml:Polygon>
+          </gml:surfaceMember>
+        </gml:MultiSurface>
+      </dd11:geometry>
+      <dd11:inspireID>
+        <base:Identifier>
+          <base:localId>111</base:localId>
+          <base:namespace>http://registry.envir.ee/datasets/eelis/ala</base:namespace>
+          <base:versionId>20140313143829</base:versionId>
+        </base:Identifier>
+      </dd11:inspireID>
+      <dd11:legalFoundationDate>1958-10-02T00:00:00Z</dd11:legalFoundationDate>
+      <dd11:legalFoundationDocument>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>Kose rajooni Töörahva Saadikute Nõukogu Täitevkomitee otsus 2.10.1958 nr 178 Loodus- ja kultuurimälestusmärkide kaitse organiseerimisest Kose rajoonis</gco:CharacterString>
+          </gmd:title>
+        </gmd:CI_Citation>
+      </dd11:legalFoundationDocument>
+      <dd11:siteDesignation>
+        <dd11:DesignationType>
+          <dd11:designationScheme xlink:href="http://dd.eionet.europa.eu/vocabulary/inspire/DesignationSchemeValue/nationalDesignationTypeCode" xlink:title="National CDDA designations"/>
+          <dd11:designation xlink:href="http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE18" xlink:title="Protected nature monument"/>
+          <dd11:percentageUnderDesignation>100</dd11:percentageUnderDesignation>
+        </dd11:DesignationType>
+      </dd11:siteDesignation>
+      <dd11:siteName>
+        <gn:GeographicalName>
+          <gn:language>est</gn:language>
+          <gn:nativeness xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:nameStatus xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:sourceOfName xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:pronunciation xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:spelling>
+            <gn:SpellingOfName>
+              <gn:text>Ojasoo männid (2)</gn:text>
+              <gn:script>Latn</gn:script>
+            </gn:SpellingOfName>
+          </gn:spelling>
+        </gn:GeographicalName>
+      </dd11:siteName>
+      <dd11:siteProtectionClassification>natureConservation</dd11:siteProtectionClassification>
+    </dd11:ProtectedSite>
+  </wfs:member>
+  <wfs:member>
+    <dd11:ProtectedSite gml:id="http://registry.envir.ee/datasets/eelis/ala/1974541864/20140306105812">
+      <gml:boundedBy>
+        <gml:Envelope srsDimension="2" srsName="urn:ogc:def:crs:EPSG::4258">
+          <gml:lowerCorner>58.97413448643376 22.481623899879693</gml:lowerCorner>
+          <gml:upperCorner>58.98071538658622 22.49769229158287</gml:upperCorner>
+        </gml:Envelope>
+      </gml:boundedBy>
+      <dd11:datasetId>1000</dd11:datasetId>
+      <dd11:geometry>
+        <gml:Polygon gml:id="http://registry.envir.ee/datasets/eelis/ala/1974541864/20140306105812/geometry" srsDimension="2" srsName="urn:ogc:def:crs:EPSG::4258">
+          <gml:exterior>
+            <gml:LinearRing>
+              <gml:posList>58.97675811520198 22.493155584487774 58.97668927243729 [...] 22.492701588321186 58.97675811520198 22.493155584487774</gml:posList>
+            </gml:LinearRing>
+          </gml:exterior>
+        </gml:Polygon>
+      </dd11:geometry>
+      <dd11:inspireID>
+        <base:Identifier>
+          <base:localId>1974541864</base:localId>
+          <base:namespace>http://registry.envir.ee/datasets/eelis/ala</base:namespace>
+          <base:versionId>20140306105812</base:versionId>
+        </base:Identifier>
+      </dd11:inspireID>
+      <dd11:legalFoundationDate>2009-04-24T00:00:00Z</dd11:legalFoundationDate>
+      <dd11:legalFoundationDocument>
+        <gmd:CI_Citation>
+          <gmd:title>
+            <gco:CharacterString>httdd11://www.riigiteataja.ee/akt/13171813?leiaKehtiv</gco:CharacterString>
+          </gmd:title>
+        </gmd:CI_Citation>
+      </dd11:legalFoundationDocument>
+      <dd11:siteDesignation>
+        <dd11:DesignationType>
+          <dd11:designationScheme xlink:href="http://dd.eionet.europa.eu/vocabulary/inspire/DesignationSchemeValue/nationalDesignationTypeCode" xlink:title="National CDDA designations"/>
+          <dd11:designation xlink:href="http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE03" xlink:title="Managed conservation zone of nature reserve"/>
+          <dd11:percentageUnderDesignation>100</dd11:percentageUnderDesignation>
+        </dd11:DesignationType>
+      </dd11:siteDesignation>
+      <dd11:siteName>
+        <gn:GeographicalName>
+          <gn:language>est</gn:language>
+          <gn:nativeness xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:nameStatus xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:sourceOfName xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:pronunciation xsi:nil="true" nilReason="http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated"/>
+          <gn:spelling>
+            <gn:SpellingOfName>
+              <gn:text>Kõrgessaare LKA, Kõrgessaare skv.</gn:text>
+              <gn:script>Latn</gn:script>
+            </gn:SpellingOfName>
+          </gn:spelling>
+        </gn:GeographicalName>
+      </dd11:siteName>
+      <dd11:siteProtectionClassification>natureConservation</dd11:siteProtectionClassification>
+    </dd11:ProtectedSite>
+  </wfs:member>
+</wfs:FeatureCollection>
+```
 
 
 ### Type 2 data
@@ -270,6 +506,7 @@ a HTTP response like (identiation added by hand for readability)
     xmlns:datasets="http://dd.eionet.europa.eu/namespaces/1"
     xmlns:dd11="http://dd.eionet.europa.eu/namespaces/11"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
     numberMatched="unknown" numberReturned="1" timeStamp="2017-12-18T08:13:22.528Z"
     xsi:schemaLocation="http://www.opengis.net/wfs/2.0
     http://localhost:8080/geoserver/schemas/wfs/2.0/wfs.xsd
@@ -366,9 +603,6 @@ a HTTP response like (identiation added by hand for readability)
     </wfs:member>
 </wfs:FeatureCollection>
 ```
-
-This request is based on a sample dataset available from [here](sample.sql)
-
 
 ## Packaging of Type1 and Type2
 We'll need to take some extra steps in order to make the GeoServer based WFS
@@ -523,7 +757,7 @@ schemaLocation="http://dd.eionet.europa.eu/namespaces/11  http://dd.eionet.europ
 type2data.attrib["{%s}schemaLocation" % xsi] = schemaLocation
 
 ## save type2 file
-filepath = 'cdda-type2.xml')
+filepath = 'cdda-type2.xml'
 # Save the type2 XML file
 with open (filepath, 'w') as f:
     f.write(etree.tostring(type2data, encoding='UTF-8', pretty_print=True))
