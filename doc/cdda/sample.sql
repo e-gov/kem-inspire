@@ -62,13 +62,13 @@ insert into inspire__cdda_reporting(
 
 insert into inspire__cdda_reporting_dataset(
     cdda_reporting, datasetid, filename,
-    wfsendpoint, wfsversion, wfsstoredquery
+    wfsendpoint, wfsversion
 ) values (
     1, 999, 'nn.gml',
-    'http://n.io/ows?', '2.0.0', 'http://n.io/ops/getspatialdataset'
+    'http://localhost:8080/geoserver/dd11/ows?', '2.0.0'
 ), (
     1, 1000, 'mm.gml',
-    'http://n.io/ows?', '2.0.0', 'http://n.io/ops/getsomethingelse'
+    'http://localhost:8080/geoserver/dd11/ows?', '2.0.0'
 );
 
 -- insert three sample designated areas

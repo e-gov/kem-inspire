@@ -587,16 +587,14 @@ a HTTP response like (identiation added by hand for readability)
                 <dd874:Row>
                     <dd874:datasetId>999</dd874:datasetId>
                     <dd874:gmlFileName>nn.gml</dd874:gmlFileName>
-                    <dd874:wfsEndpoint>http://n.io/ows?</dd874:wfsEndpoint>
+                    <dd874:wfsEndpoint>http://localhost:8080/geoserver/dd11/ows?</dd874:wfsEndpoint>
                     <dd874:wfsVersion>2.0.0</dd874:wfsVersion>
-                    <dd874:wfsStoredQuery>http://n.io/ops/getspatialdataset</dd874:wfsStoredQuery>
                 </dd874:Row>
                 <dd874:Row>
                     <dd874:datasetId>1000</dd874:datasetId>
                     <dd874:gmlFileName>mm.gml</dd874:gmlFileName>
-                    <dd874:wfsEndpoint>http://n.io/ows?</dd874:wfsEndpoint>
+                    <dd874:wfsEndpoint>http://localhost:8080/geoserver/dd11/ows?</dd874:wfsEndpoint>
                     <dd874:wfsVersion>2.0.0</dd874:wfsVersion>
-                    <dd874:wfsStoredQuery>http://n.io/ops/getsomethingelse</dd874:wfsStoredQuery>
                 </dd874:Row>
             </dd874:LinkedDataset>
         </dd11:CDDA>
@@ -607,10 +605,10 @@ a HTTP response like (identiation added by hand for readability)
 ## Packaging of Type1 and Type2
 We'll need to take some extra steps in order to make the GeoServer based WFS
 response schema-compliant for CDDA reporting. Namely:
-1. we'll need to take the `{http://dd.eionet.europa.eu/namespaces/11}CDDA`
+1. for Type2 data we'll need to take the `{http://dd.eionet.europa.eu/namespaces/11}CDDA`
 element out of `{http://www.opengis.net/wfs/2.0}FeatureCollection/{http://www.opengis.net/wfs/2.0}member`
-and make it the root element of our type2 xml
-2. process the `{http://dd.eionet.europa.eu/namespaces/11}ProtectedSite` WFS
+and make it the root element of our type2 xml;
+2. and for Type1 data process the `{http://dd.eionet.europa.eu/namespaces/11}ProtectedSite` WFS
 elements and
     - remove the `{http://dd.eionet.europa.eu/namespaces/11}ProtectedSite/{http://dd.eionet.europa.eu/namespaces/11}datasetId`
 element;
@@ -629,7 +627,8 @@ The script will firstly download the dd11:CDDA xml and then do separate
 requests to the url specified in
 `dd11:CDDA/dd874:LinkedDataset/dd874:Row/dd874:wfsEndpoint` with the
 `cql_query` parameter set at `datasetid=n` where *n* is the
-`dd11:CDDA/dd874:LinkedDataset/dd874:Row/dd874:datasetId` specified for that instance.
+`dd11:CDDA/dd874:LinkedDataset/dd874:Row/dd874:datasetId` specified for that
+LinkedDataset instance.
 
 ### Fixing Type1 data and saving a GML
 
@@ -676,10 +675,12 @@ gco = ps.nsmap['gco']
 xlink = ps.nsmap['xlink']
 gn = ps.nsmap['gn']
 
+# set schemaLocation to Inspire official
+
+ps.attrib["{%s}schemaLocation" % xsi] = schemaLocation
 
 # remove some xml root attributes not applicable for GML
 
-ps.attrib["{%s}schemaLocation" % xsi] = schemaLocation
 for att in ['numberReturned', 'timeStamp', 'numberMatched']:
     if ps.attrib.get(att):
         del ps.attrib[att]
