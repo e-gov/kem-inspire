@@ -229,7 +229,9 @@ that's reported upon and each row here maps to `dd873:Row`.
 
 
 ## Sample queries and output
-Sample queries are based on a sample dataset available from [here](sample.sql)
+Sample queries are based on a sample dataset available from [here](sample.sql).
+The data is provided by courtesy of the
+[Estonian Environmental Agency](http://keskkonnaagentuur.ee/en).
 
 ### Type1 data
 Because the CDDA Type1 dataset is two-fold: supersecret protected sites'

@@ -8,6 +8,8 @@
 *
 *   Details can be found at:
 *   https://github.com/e-gov/kem-inspire/blob/reporting/doc/cdda/README.md
+*
+*   Sample data courtesy of the Estonian Environmental Agency.
 */
 
 create table inspire__cdda_reporting (
