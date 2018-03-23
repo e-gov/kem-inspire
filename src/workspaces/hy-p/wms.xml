@@ -88,10 +88,10 @@
   <getFeatureInfoMimeTypeCheckingEnabled>true</getFeatureInfoMimeTypeCheckingEnabled>
   <getFeatureInfoMimeTypes>
     <string>text/html</string>
+    <string>application/json</string>
     <string>application/vnd.ogc.gml/3.1.1</string>
     <string>application/vnd.ogc.gml</string>
     <string>text/xml; subtype=gml/3.1.1</string>
-    <string>application/json</string>
   </getFeatureInfoMimeTypes>
   <getMapMimeTypeCheckingEnabled>true</getMapMimeTypeCheckingEnabled>
   <getMapMimeTypes>
@@ -99,6 +99,8 @@
     <string>image/png</string>
     <string>image/jpeg</string>
   </getMapMimeTypes>
+  <dynamicStylingDisabled>false</dynamicStylingDisabled>
+  <featuresReprojectionDisabled>false</featuresReprojectionDisabled>
   <maxBuffer>25</maxBuffer>
   <maxRequestMemory>65536</maxRequestMemory>
   <maxRenderingTime>60</maxRenderingTime>
