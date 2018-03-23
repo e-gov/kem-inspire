@@ -17,10 +17,14 @@
     </style>
   </styles>
   <bounds>
-    <minx>344417.9772646903</minx>
-    <maxx>755314.0703681456</maxx>
-    <miny>6372972.77466095</miny>
-    <maxy>6641819.343893356</maxy>
-    <crs class="projected">EPSG:3301</crs>
+    <minx>21.5105320470713</minx>
+    <maxx>28.209931814249497</maxx>
+    <miny>57.51786267510146</miny>
+    <maxy>59.82423500757042</maxy>
+    <crs>EPSG:4258</crs>
   </bounds>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
 </layerGroup>

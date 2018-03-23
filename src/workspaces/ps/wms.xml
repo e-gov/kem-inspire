@@ -42,7 +42,7 @@
     <entry key="pngCompression">25</entry>
     <entry key="jpegCompression">25</entry>
     <entry key="inspire.metadataURL">http://inspire.maaamet.ee/geoportal/rest/document?id=</entry>
-    <entry key="inspire.language">eng</entry>
+    <entry key="inspire.language">est</entry>
     <entry key="inspire.metadataURLType">application/vnd.iso.19139+xml</entry>
     <entry key="advancedProjectionHandling">true</entry>
     <entry key="maxAllowedFrames">2147483647</entry>
@@ -94,9 +94,12 @@
   </getFeatureInfoMimeTypes>
   <getMapMimeTypeCheckingEnabled>true</getMapMimeTypeCheckingEnabled>
   <getMapMimeTypes>
+    <string>text/html; subtype=openlayers</string>
     <string>image/png</string>
     <string>image/jpeg</string>
   </getMapMimeTypes>
+  <dynamicStylingDisabled>false</dynamicStylingDisabled>
+  <featuresReprojectionDisabled>false</featuresReprojectionDisabled>
   <maxBuffer>25</maxBuffer>
   <maxRequestMemory>65536</maxRequestMemory>
   <maxRenderingTime>60</maxRenderingTime>

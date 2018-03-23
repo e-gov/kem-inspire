@@ -11,16 +11,10 @@
       <sld:FeatureTypeStyle>
         <sld:Rule>
           <ogc:Filter>
-            <ogc:And>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designationScheme/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>natura2000</ogc:Literal>
-			  </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>siteOfCommunityImportance</ogc:Literal>
-			  </ogc:PropertyIsEqualTo>
-            </ogc:And>
+            <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:href</ogc:PropertyName>
+               <ogc:Literal>http://inspire.ec.europa.eu/codelist/Natura2000DesignationValue/siteOfCommunityImportance</ogc:Literal>
+	        </ogc:PropertyIsEqualTo>
 		  </ogc:Filter>
           <sld:PolygonSymbolizer>
             <sld:Geometry>

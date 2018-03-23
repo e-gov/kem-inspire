@@ -56,7 +56,9 @@
     </sourceDataStores>
     <targetTypes>
         <FeatureType>
-            <schemaUri>http://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd</schemaUri>
+            <schemaUri>
+                http://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd
+            </schemaUri>
         </FeatureType>
     </targetTypes>
     <typeMappings>
@@ -68,43 +70,78 @@
                 <AttributeMapping>
                     <targetAttribute>ps:ProtectedSite</targetAttribute>
                     <idExpression>
-                        <OCQL>strConcat('ps.', id_localid)</OCQL>
+                        <OCQL>gml_id</OCQL>
                     </idExpression>
                 </AttributeMapping>
+
+                <!-- identification -->
+
                 <AttributeMapping>
                     <targetAttribute>ps:inspireID/base:Identifier/base:localId</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
                     <sourceExpression>
                         <OCQL>id_localid</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>ps:inspireID/base:Identifier/base:namespace</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
                     <sourceExpression>
-                        <OCQL>'http://kemit.ee/Inspire/EELIS/ProtectedSite'</OCQL>
+                        <OCQL>id_namespace</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>ps:inspireID/base:Identifier/base:versionId</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
                     <sourceExpression>
                         <OCQL>id_versionid</OCQL>
                     </sourceExpression>
                     <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(id_versionid), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(id_versionid), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(id_versionid), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>ps:geometry</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
                     <sourceExpression>
                         <OCQL>shape</OCQL>
                     </sourceExpression>
                     <enccodeIfEmpty>true</enccodeIfEmpty>
+                    <idExpression>
+                        <OCQL>strConcat(gml_id, '/geometry')</OCQL>
+                    </idExpression>
                 </AttributeMapping>
 
+                <!-- GeographicalName -->
+
+                <!-- ProtectedSite/siteName: if sitename IS NOT NULL encode
+                    as a GeograohicalName. If NULL then xsi:nil=true and nilReason=Unknown -->
+
+                <AttributeMapping>
+                    <targetAttribute>ps:siteName</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>Expression.NIL</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(sitename), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(sitename), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>ps:siteName/gn:GeographicalName/gn:language</targetAttribute>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <sourceExpression>
-                        <OCQL>'est'</OCQL>
+                        <OCQL>if_then_else(isNull(sitename), Expression.NIL, 'est')</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -112,18 +149,14 @@
                     <sourceExpression>
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
-                    <!--ClientProperty>
-                        <name>xlink:href</name>
-                        <value>'http://inspire.ec.europa.eu/codelist/NativenessValue/endonym'</value>
-                    </ClientProperty>
-                    <ClientProperty>
-                        <name>xlink:title</name>
-                        <value>'endonym'</value>
-                    </ClientProperty-->
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>if_then_else(isNull(sitename), Expression.NIL, 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(sitename), Expression.NIL, 'true')</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -131,18 +164,14 @@
                     <sourceExpression>
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
-                    <!--ClientProperty>
-                        <name>xlink:href</name>
-                        <value>'http://inspire.ec.europa.eu/codelist/NameStatusValue/official'</value>
-                    </ClientProperty>
-                    <ClientProperty>
-                        <name>xlink:title</name>
-                        <value>'official'</value>
-                    </ClientProperty-->
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>if_then_else(isNull(sitename), Expression.NIL, 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(sitename), Expression.NIL, 'true')</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -150,10 +179,14 @@
                     <sourceExpression>
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>if_then_else(isNull(sitename), Expression.NIL, 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(sitename), Expression.NIL, 'true')</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -161,18 +194,20 @@
                     <sourceExpression>
                         <OCQL>Expression.NIL</OCQL>
                     </sourceExpression>
-                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <encodeIfEmpty>false</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>'unpopulated'</value>
+                        <value>if_then_else(isNull(sitename), Expression.NIL, 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated')</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(sitename), Expression.NIL, 'true')</value>
                     </ClientProperty>
                 </AttributeMapping>
-
-
                 <AttributeMapping>
                     <targetAttribute>ps:siteName/gn:GeographicalName/gn:spelling/gn:SpellingOfName/gn:script</targetAttribute>
                     <sourceExpression>
-                        <OCQL>'Latn'</OCQL>
+                        <OCQL>if_then_else(isNull(sitename), Expression.NIL, 'Latn')</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -182,20 +217,36 @@
                     </sourceExpression>
                 </AttributeMapping>
 
+                <!-- ProtectedSite -->
+
                 <AttributeMapping>
                     <targetAttribute>ps:siteProtectionClassification</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
                     <sourceExpression>
                         <OCQL>siteprotectionclassification</OCQL>
                     </sourceExpression>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(siteprotectionclassification), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(siteprotectionclassification), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
+                    </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
-	            <targetAttribute>ps:legalFoundationDate</targetAttribute>
+	                <targetAttribute>ps:legalFoundationDate</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
                     <sourceExpression>
                         <OCQL>legalfoundationdate</OCQL>
                     </sourceExpression>
                     <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(legalfoundationdate), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
                         <name>nilReason</name>
-                        <value>legalfoundationdate_void</value>
+                        <value>if_then_else(isNull(legalfoundationdate_void), Expression.NIL, legalfoundationdate_void)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -210,11 +261,17 @@
                     </ClientProperty>
                     <ClientProperty>
                         <name>xlink:title</name>
-                        <value>designationscheme</value>
+                        <value>designationscheme_lbl</value>
                     </ClientProperty>
                     <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(designationscheme_uri), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <!-- ProtectedSite/designation IS NOT nillable! so
+                              if this happens, then this is an error. -->
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(designationscheme), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(designationscheme_uri), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
@@ -229,13 +286,37 @@
                     </ClientProperty>
                     <ClientProperty>
                         <name>xlink:title</name>
-                        <value>designation</value>
+                        <value>designation_lbl</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(designation_uri), 'true', Expression.NIL)</value>
+                    </ClientProperty>
+                    <ClientProperty>
+                        <!-- ProtectedSite/designation IS NOT nillable! so
+                              if this happens, then this is an error. -->
+                        <name>nilReason</name>
+                        <value>if_then_else(isNull(designation_uri), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
+                    </ClientProperty>
+                </AttributeMapping>
+                <AttributeMapping>
+                    <targetAttribute>ps:siteDesignation/ps:DesignationType/ps:percentageUnderDesignation</targetAttribute>
+                    <sourceExpression>
+                        <OCQL>if_then_else(isNull(designation_uri), Expression.NIL, '100')</OCQL>
+                    </sourceExpression>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(designation_uri), 'true', Expression.NIL)</value>
                     </ClientProperty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(designation), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(designation_uri), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
+
+                <!-- legalFoundation -->
+
                 <AttributeMapping>
                     <targetAttribute>ps:legalFoundationDocument</targetAttribute>
                     <sourceExpression>
@@ -246,6 +327,10 @@
                         <name>nilReason</name>
                         <value>legalfoundationdocument_void</value>
                     </ClientProperty>
+                    <ClientProperty>
+                        <name>xsi:nil</name>
+                        <value>if_then_else(isNull(legalfoundationdocument_void), Expression.NIL, 'true')</value>
+                    </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
                     <targetAttribute>ps:legalFoundationDocument/gmd:CI_Citation/gmd:title/gco:CharacterString</targetAttribute>
@@ -253,7 +338,18 @@
                         <OCQL>if_then_else(isNull(legalfoundationdocument_text), legalfoundationdocument_uri, legalfoundationdocument_text)</OCQL>
                     </sourceExpression>
                 </AttributeMapping>
-
+                <!-- is this correct?? -->
+                <AttributeMapping>
+                    <targetAttribute>ps:legalFoundationDocument/gmd:CI_Citation/gmd:date/gmd:CI_Date/gmd:date</targetAttribute>
+                    <encodeIfEmpty>true</encodeIfEmpty>
+                    <sourceExpression>
+                        <OCQL>Expression.NIL</OCQL>
+                    </sourceExpression>
+                    <ClientProperty>
+                        <name>gco:nilReason</name>
+                        <value>'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unpopulated'</value>
+                    </ClientProperty>
+                </AttributeMapping>
             </attributeMappings>
         </FeatureTypeMapping>
     </typeMappings>

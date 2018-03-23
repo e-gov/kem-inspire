@@ -5,50 +5,31 @@
   <namespace>
     <id>NamespaceInfoImpl-3e37a066:15a3750de58:-7fc8</id>
   </namespace>
-  <title>Protected Sites</title>
-  <nativeCRS class="projected">PROJCS[&quot;Estonian Coordinate System of 1997&quot;, 
-  GEOGCS[&quot;EST97&quot;, 
-    DATUM[&quot;Estonia 1997&quot;, 
-      SPHEROID[&quot;GRS 1980&quot;, 6378137.0, 298.257222101, AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]], 
-      TOWGS84[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
-      AUTHORITY[&quot;EPSG&quot;,&quot;6180&quot;]], 
-    PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
-    UNIT[&quot;degree&quot;, 0.017453292519943295], 
-    AXIS[&quot;Geodetic longitude&quot;, EAST], 
-    AXIS[&quot;Geodetic latitude&quot;, NORTH], 
-    AUTHORITY[&quot;EPSG&quot;,&quot;4180&quot;]], 
-  PROJECTION[&quot;Lambert_Conformal_Conic_2SP&quot;, AUTHORITY[&quot;EPSG&quot;,&quot;9802&quot;]], 
-  PARAMETER[&quot;central_meridian&quot;, 24.0], 
-  PARAMETER[&quot;latitude_of_origin&quot;, 57.51755393055556], 
-  PARAMETER[&quot;standard_parallel_1&quot;, 59.333333333333336], 
-  PARAMETER[&quot;false_easting&quot;, 500000.0], 
-  PARAMETER[&quot;false_northing&quot;, 6375000.0], 
-  PARAMETER[&quot;scale_factor&quot;, 1.0], 
-  PARAMETER[&quot;standard_parallel_2&quot;, 58.0], 
-  UNIT[&quot;m&quot;, 1.0], 
-  AXIS[&quot;Easting&quot;, EAST], 
-  AXIS[&quot;Northing&quot;, NORTH], 
-  AUTHORITY[&quot;EPSG&quot;,&quot;3301&quot;]]</nativeCRS>
-  <srs>EPSG:3301</srs>
-  <nativeBoundingBox>
-    <minx>354417.8851</minx>
-    <maxx>739207.5609</maxx>
-    <miny>6380049.0585</miny>
-    <maxy>6634274.9484</maxy>
-    <crs class="projected">EPSG:3301</crs>
-  </nativeBoundingBox>
-  <latLonBoundingBox>
-    <minx>21.404797333466107</minx>
-    <maxx>28.26059571851651</maxx>
-    <miny>57.49896810793623</miny>
-    <maxy>59.8448356094148</maxy>
-    <crs>GEOGCS[&quot;WGS84(DD)&quot;, 
-  DATUM[&quot;WGS84&quot;, 
-    SPHEROID[&quot;WGS84&quot;, 6378137.0, 298.257223563]], 
-  PRIMEM[&quot;Greenwich&quot;, 0.0], 
+  <title>ProtectedSite</title>
+  <nativeCRS>GEOGCS[&quot;ETRS89&quot;, 
+  DATUM[&quot;European Terrestrial Reference System 1989&quot;, 
+    SPHEROID[&quot;GRS 1980&quot;, 6378137.0, 298.257222101, AUTHORITY[&quot;EPSG&quot;,&quot;7019&quot;]], 
+    TOWGS84[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], 
+    AUTHORITY[&quot;EPSG&quot;,&quot;6258&quot;]], 
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], 
   UNIT[&quot;degree&quot;, 0.017453292519943295], 
   AXIS[&quot;Geodetic longitude&quot;, EAST], 
-  AXIS[&quot;Geodetic latitude&quot;, NORTH]]</crs>
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], 
+  AUTHORITY[&quot;EPSG&quot;,&quot;4258&quot;]]</nativeCRS>
+  <srs>EPSG:4258</srs>
+  <nativeBoundingBox>
+    <minx>21.5105320470713</minx>
+    <maxx>28.2099318142495</maxx>
+    <miny>57.5178626430376</miny>
+    <maxy>59.8242349791988</maxy>
+    <crs>EPSG:4258</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>21.5105320470713</minx>
+    <maxx>28.2099318142495</maxx>
+    <miny>57.5178626430376</miny>
+    <maxy>59.8242349791988</maxy>
+    <crs>EPSG:4326</crs>
   </latLonBoundingBox>
   <projectionPolicy>FORCE_DECLARED</projectionPolicy>
   <enabled>true</enabled>
@@ -56,7 +37,7 @@
     <entry key="cachingEnabled">false</entry>
   </metadata>
   <store class="dataStore">
-    <id>DataStoreInfoImpl-3e37a066:15a3750de58:-7fc5</id>
+    <id>DataStoreInfoImpl-2c4aa0ee:16020fa6fe6:-7fff</id>
   </store>
   <maxFeatures>0</maxFeatures>
   <numDecimals>0</numDecimals>

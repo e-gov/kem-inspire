@@ -11,16 +11,10 @@
 
         <sld:Rule>
           <ogc:Filter>
-            <ogc:And>
               <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designationScheme/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>UNESCOManAndBiosphereProgramme</ogc:Literal>
+                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designationScheme/@xlink:href</ogc:PropertyName>
+                <ogc:Literal>http://dd.eionet.europa.eu/vocabulary/inspire/DesignationSchemeValue/UNESCOManAndBiosphereProgramme</ogc:Literal>
 			  </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>biosphereReserve</ogc:Literal>
-			  </ogc:PropertyIsEqualTo>
-            </ogc:And>
 		  </ogc:Filter>
           <sld:PolygonSymbolizer>
             <sld:Geometry>

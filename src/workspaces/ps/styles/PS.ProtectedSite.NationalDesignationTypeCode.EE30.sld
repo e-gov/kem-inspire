@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sld:StyledLayerDescriptor xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:ps="http://inspire.ec.europa.eu/schemas/ps/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:ogc="http://www.opengis.net/ogc" xmlns:sld="http://www.opengis.net/sld" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.opengis.net/sld http://schemas.opengis.net/sld/1.0.0/StyledLayerDescriptor.xsd">
   <sld:NamedLayer>
-    <sld:Name>PS.ProtectedSite.NationalDesignationTypeCode.EE15</sld:Name>
+    <sld:Name>PS.ProtectedSite.NationalDesignationTypeCode.EE30</sld:Name>
     <sld:UserStyle>
-      <sld:Name>PS.ProtectedSite.NationalDesignationTypeCode.EE15</sld:Name>
-      <sld:Title>Protected Sites - NationalDesignationTypeCode EE15</sld:Title>
+      <sld:Name>PS.ProtectedSite.NationalDesignationTypeCode.EE30</sld:Name>
+      <sld:Title>Protected Sites - NationalDesignationTypeCode EE30</sld:Title>
       <sld:Abstract>
-        Tsoneerimata kaitseala [et] | Unzoned protected area [eng]
+        Ranna või kalda veekaitsevöönd [et] | Water protection zone of shore or bank [eng]
       </sld:Abstract>
       <sld:FeatureTypeStyle>
 
@@ -15,7 +15,7 @@
             <ogc:And>
               <ogc:PropertyIsEqualTo>
                 <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:href</ogc:PropertyName>
-                <ogc:Literal>http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE15</ogc:Literal>
+                <ogc:Literal>http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE30</ogc:Literal>
 			  </ogc:PropertyIsEqualTo>
               <ogc:PropertyIsEqualTo>
                 <ogc:Function name="dimension">
@@ -44,7 +44,7 @@
             <ogc:And>
               <ogc:PropertyIsEqualTo>
                 <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:href</ogc:PropertyName>
-                <ogc:Literal>http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE15</ogc:Literal>
+                <ogc:Literal>http://dd.eionet.europa.eu/vocabulary/cdda/designations/EE30</ogc:Literal>
 			  </ogc:PropertyIsEqualTo>
               <ogc:PropertyIsEqualTo>
                 <ogc:Function name="dimension">

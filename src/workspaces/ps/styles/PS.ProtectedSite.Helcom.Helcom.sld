@@ -11,16 +11,10 @@
 
         <sld:Rule>
           <ogc:Filter>
-            <ogc:And>
               <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designationScheme/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>extend</ogc:Literal>
+                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:href</ogc:PropertyName>
+                <ogc:Literal>http://registry.envir.ee/codelist/helcom/helcom</ogc:Literal>
 			  </ogc:PropertyIsEqualTo>
-              <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>ps:siteDesignation/ps:DesignationType/ps:designation/@xlink:title</ogc:PropertyName>
-                <ogc:Literal>helcom</ogc:Literal>
-			  </ogc:PropertyIsEqualTo>
-            </ogc:And>
 		  </ogc:Filter>
           <sld:PolygonSymbolizer>
             <sld:Geometry>
