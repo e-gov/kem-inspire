@@ -116,7 +116,7 @@
                     <encodeIfEmpty>true</encodeIfEmpty>
                     <ClientProperty>
                         <name>nilReason</name>
-                        <value>if_then_else(isNull(beginlifespanversion), 'unknown', Expression.NIL)</value>
+                        <value>if_then_else(isNull(beginlifespanversion), 'http://inspire.ec.europa.eu/codelist/VoidReasonValue/Unknown', Expression.NIL)</value>
                     </ClientProperty>
                 </AttributeMapping>
                 <AttributeMapping>
